@@ -11,4 +11,14 @@ class PesananKamar extends Model
 
     protected $table = 'pesanan_kamar';
     protected $guarded = ['id'];
+
+    public function kamar()
+    {
+        return $this->belongsTo(Kamar::class, 'id_kamar');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 }

@@ -19,7 +19,7 @@
                 </form>
             </div>
             <div class="col-md-2 my-auto">
-                <a href="{{ route('kelola-aset.create') }}" class="btn btn-success" style="font-size: 15px">Tambah
+                <a href="{{ route('kelola-aset.create') }}" class="btn btn-success btn-sm" style="font-size: 15px">Tambah
                     Aset</a>
             </div>
         </div>
@@ -60,15 +60,15 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ route('kelola-aset.edit', [$item]) }}" class="btn btn-primary">Edit</a>
+                                <a href="{{ route('kelola-aset.edit', [$item]) }}" class="btn btn-primary btn-sm">Edit</a>
                                 <form action="{{ route('kelola-aset.destroy', [$item]) }}" method="POST"
                                     style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger"
+                                    <button type="submit" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Apakah Anda yakin ingin menghapus data?')">Delete</button>
                                 </form>
-                                <a class="btn btn-warning" href="{{ route('no_aset.index', $item) }}">Download
+                                <a class="btn btn-warning btn-sm" href="{{ route('no_aset.index', $item) }}">Download
                                     No Aset</a>
                             </td>
                         </tr>
@@ -80,5 +80,6 @@
                 </tbody>
             </table>
         </div>
+        {{ $aset->links() }}
     </div>
 @endsection

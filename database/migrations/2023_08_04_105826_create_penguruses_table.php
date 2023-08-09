@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user');
             $table->string('jabatan');
             $table->text('program_kerja');
+            $table->enum('status', ['SELESAI', 'AKTIF', 'BELUM DI VERIFIKASI', 'DI TOLAK'])->default("BELUM DI VERIFIKASI");
             $table->foreign('id_user')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }

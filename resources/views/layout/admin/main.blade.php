@@ -9,6 +9,12 @@
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" /> --}}
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
@@ -35,52 +41,90 @@
                 <hr>
 
                 <a href="#" class="sidebar-item">
+                    <i class="fa-solid fa-gauge me-2"></i>
                     <span>Dashboard</span>
                 </a>
 
-                <a href="{{ route('kategori-aset.index') }}" class="sidebar-item">
+                <a href="{{ route('kategori-aset.index') }}"
+                    class="sidebar-item {{ Request::is('kategori-aset*') ? 'active' : '' }}">
+                    <i class="fa-solid fa-tags me-2"></i>
                     <span>Kategori Aset</span>
                 </a>
 
-                <a href="{{ route('kelola-aset.index') }}" class="sidebar-item">
+                <a href="{{ route('kelola-aset.index') }}"
+                    class="sidebar-item {{ Request::is('kelola-aset*') ? 'active' : '' }}">
+                    <i class="fa-solid fa-bed me-2"></i>
                     <span>Aset</span>
                 </a>
 
-                <a href="{{ route('kelola-ruang.index') }}" class="sidebar-item">
+                <a href="{{ route('kelola-ruang.index') }}"
+                    class="sidebar-item {{ Request::is('kelola-ruang*') ? 'active' : '' }}">
+                    <i class="fa-solid fa-door-open me-2"></i>
                     <span>Kelola Ruang</span>
                 </a>
 
-                <a href="{{ route('kelola-galeri.index') }}" class="sidebar-item">
+                <a href="{{ route('kelola-galeri.index') }}"
+                    class="sidebar-item {{ Request::is('kelola-galeri*') ? 'active' : '' }}">
+                    <i class="bi bi-file-image me-2"></i>
                     <span>Galeri</span>
                 </a>
 
-                <a href="{{ route('kategori-berita.index') }}" class="sidebar-item">
+                <a href="{{ route('kategori-berita.index') }}"
+                    class="sidebar-item {{ Request::is('kategori-berita*') ? 'active' : '' }}">
+                    <i class="fa-solid fa-tags me-2"></i>
                     <span>Kategori Berita</span>
                 </a>
 
-                <a href="{{ route('kelola-berita.index') }}" class="sidebar-item">
+                <a href="{{ route('kelola-berita.index') }}"
+                    class="sidebar-item {{ Request::is('kelola-berita*') ? 'active' : '' }}">
+                    <i class="bi bi-newspaper me-2"></i>
                     <span>Berita</span>
                 </a>
 
-                <a href="{{ route('verifikasi.pengguna.index') }}" class="sidebar-item">
+                <a href="{{ route('verifikasi.pengguna.index') }}"
+                    class="sidebar-item {{ Request::is('verifikasi-pengguna*') ? 'active' : '' }}">
+                    <i class="bi bi-person-check-fill me-2"></i>
                     <span>Pengguna</span>
                 </a>
 
                 <a href="#" class="sidebar-item">
+                    <i class="fa-solid fa-people-roof me-2"></i>
                     <span>Pengurus</span>
                 </a>
 
-                <a href="#" class="sidebar-item">
-                    <span>Pesanan Kamar</span>
+                <a href="{{ route('pengajuan-kamar.index') }}"
+                    class="sidebar-item {{ Request::is('pengajuan-kamar*') ? 'active' : '' }}">
+                    <i class="fa-solid fa-suitcase-rolling me-2"></i>
+                    <span>Pengajuan Kamar</span>
                 </a>
 
                 <a href="{{ route('tamu.index') }}" class="sidebar-item">
+                    <i class="fa-solid fa-reply me-2"></i>
+                    <span>Tanggapan</span>
+                </a>
+
+                <a href="{{ route('tamu.index') }}" class="sidebar-item {{ Request::is('tamu*') ? 'active' : '' }}">
+                    <i class="fa-solid fa-users me-2"></i>
                     <span>Data Tamu</span>
                 </a>
 
-                <a href="#" class="sidebar-item">
-                    <span>Logout</span>
+                <a href="{{ route('wa.index') }}"
+                    class="sidebar-item {{ Request::is('broadcast-wa*') ? 'active' : '' }}">
+                    <i class="bi bi-whatsapp me-2"></i>
+                    <span>Wa Broadcast</span>
                 </a>
+
+                <a class="sidebar-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();">
+                    <i class="fa-solid fa-right-from-bracket me-2"></i>
+                    <span>Keluar</span>
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+
             </aside>
         </div>
 

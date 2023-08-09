@@ -20,7 +20,8 @@
                 </form>
             </div>
             <div class="col-md-2 my-auto">
-                <a href="{{ route('kamar.aset.create', $kamar) }}" class="btn btn-success" style="font-size: 15px">Tambah
+                <a href="{{ route('kamar.aset.create', $kamar) }}" class="btn btn-success btn-sm"
+                    style="font-size: 15px">Tambah
                     Aset</a>
             </div>
         </div>
@@ -61,12 +62,13 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ route('kamar.aset.edit', [$kamar, $item]) }}" class="btn btn-primary">Edit</a>
+                                <a href="{{ route('kamar.aset.edit', [$kamar, $item]) }}"
+                                    class="btn btn-primary btn-sm">Edit</a>
                                 <form action="{{ route('kamar.aset.destroy', [$kamar, $item]) }}" method="POST"
                                     style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger"
+                                    <button type="submit" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Apakah Anda yakin ingin menghapus data?')">Delete</button>
                                 </form>
 
@@ -82,5 +84,6 @@
                 </tbody>
             </table>
         </div>
+        {{ $aset->links() }}
     </div>
 @endsection

@@ -7,8 +7,12 @@ use App\Http\Controllers\admin\GaleriController;
 use App\Http\Controllers\admin\KamarController;
 use App\Http\Controllers\admin\KategoriAsetController;
 use App\Http\Controllers\admin\KategoriBeritaController;
+use App\Http\Controllers\admin\KelolaPengajuanKamarController;
 use App\Http\Controllers\admin\TamuController;
 use App\Http\Controllers\admin\VerifikasiAnggotaController;
+use App\Http\Controllers\admin\WaController;
+use App\Http\Controllers\user\BerandaController;
+use App\Http\Controllers\user\PesanKamarController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,58 +27,73 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-// Route::get('/', function () {
-//     return view('layout.admin.main');
-// });
-
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [BerandaController::class, 'index'])->name('beranda');
 
-Route::resource('kelola-ruang', KamarController::class);
+Route::get('/detail-kamar/{kamar}', [BerandaController::class, 'detail_kamar'])->name('detail-kamar');
 
-Route::resource('kategori-berita', KategoriBeritaController::class);
+Route::middleware('auth')->group(function () {
 
-Route::resource('kategori-aset', KategoriAsetController::class);
+    Route::post('/detail-kamar/pengajuan-kamar', [PesanKamarController::class, 'store'])->name('pengajuan-kamar.store');
 
-Route::resource('kelola-galeri', GaleriController::class);
+    Route::middleware('can:isAdmin')->group(function () {
 
-Route::resource('kelola-berita', BeritaController::class);
+        Route::get('/broadcast-wa', [WaController::class, 'index'])->name('wa.index');
 
-Route::resource('kelola-aset', AsetUtamaController::class);
+        Route::post('/broadcast-wa/store', [WaController::class, 'send'])->name('wa.store');
 
-Route::resource('tamu', TamuController::class);
+        Route::get('pengajuan-kamar', [KelolaPengajuanKamarController::class, 'index'])->name('pengajuan-kamar.index');
 
-Route::get('ruangan/{kamar}/aset', [AsetController::class, 'index'])
-    ->name('kamar.aset.index');
+        Route::get('pengajuan-kamar/detail/{pengajuan_kamar}', [KelolaPengajuanKamarController::class, 'detail'])->name('pengajuan-kamar.detail');
 
-Route::get('ruangan/{kamar}/aset/tambah', [AsetController::class, 'create'])
-    ->name('kamar.aset.create');
+        Route::post('pengajuan-kamar/{pengajuan_kamar}/update/di-terima', [KelolaPengajuanKamarController::class, 'update_aktif'])->name('pengajuan-kamar.update_aktif');
 
-Route::post('ruangan/{kamar}/aset/tambah/store', [AsetController::class, 'store'])
-    ->name('kamar.aset.store');
+        Route::post('pengajuan-kamar/{pengajuan_kamar}/update/di-tolak', [KelolaPengajuanKamarController::class, 'update_tolak'])->name('pengajuan-kamar.update_tolak');
 
-Route::get('ruangan/{kamar}/aset/{aset}/edit', [AsetController::class, 'edit'])
-    ->name('kamar.aset.edit');
+        Route::post('pengajuan-kamar/{pengajuan_kamar}/update/selesai', [KelolaPengajuanKamarController::class, 'update_selesai'])->name('pengajuan-kamar.update_selesai');
 
-Route::get('/{kelola_aset}/download-no_aset', [AsetController::class, 'pdf'])->name('no_aset.index');
+        Route::resource('kelola-ruang', KamarController::class);
 
-Route::put('ruangan/{kamar}/aset/{aset}/edit/update', [AsetController::class, 'update'])
-    ->name('kamar.aset.update');
+        Route::resource('kategori-berita', KategoriBeritaController::class);
 
-Route::delete('ruangan/{kamar}/aset/{aset}/hapus', [AsetController::class, 'destroy'])
-    ->name('kamar.aset.destroy');
+        Route::resource('kategori-aset', KategoriAsetController::class);
 
-Route::get('verifikasi-pengguna', [VerifikasiAnggotaController::class, 'index'])
-    ->name('verifikasi.pengguna.index');
+        Route::resource('kelola-galeri', GaleriController::class);
 
-Route::get('verifikasi-pengguna/{verifikasi_pengguna}', [VerifikasiAnggotaController::class, 'detail'])
-    ->name('verifikasi.pengguna.detail');
+        Route::resource('kelola-berita', BeritaController::class);
 
-Route::post('verifikasi-anggota/{verifikasi_pengguna}', [VerifikasiAnggotaController::class, 'update'])
-    ->name('verifikasi.pengguna.update');
+        Route::resource('kelola-aset', AsetUtamaController::class);
+
+        Route::resource('tamu', TamuController::class);
+
+        Route::get('ruangan/{kamar}/aset', [AsetController::class, 'index'])
+            ->name('kamar.aset.index');
+
+        Route::get('ruangan/{kamar}/aset/tambah', [AsetController::class, 'create'])
+            ->name('kamar.aset.create');
+
+        Route::post('ruangan/{kamar}/aset/tambah/store', [AsetController::class, 'store'])
+            ->name('kamar.aset.store');
+
+        Route::get('ruangan/{kamar}/aset/{aset}/edit', [AsetController::class, 'edit'])
+            ->name('kamar.aset.edit');
+
+        Route::get('/{kelola_aset}/download-no_aset', [AsetController::class, 'pdf'])->name('no_aset.index');
+
+        Route::put('ruangan/{kamar}/aset/{aset}/edit/update', [AsetController::class, 'update'])
+            ->name('kamar.aset.update');
+
+        Route::delete('ruangan/{kamar}/aset/{aset}/hapus', [AsetController::class, 'destroy'])
+            ->name('kamar.aset.destroy');
+
+        Route::get('verifikasi-pengguna', [VerifikasiAnggotaController::class, 'index'])
+            ->name('verifikasi.pengguna.index');
+
+        Route::get('verifikasi-pengguna/{verifikasi_pengguna}', [VerifikasiAnggotaController::class, 'detail'])
+            ->name('verifikasi.pengguna.detail');
+
+        Route::post('verifikasi-anggota/{verifikasi_pengguna}', [VerifikasiAnggotaController::class, 'update'])
+            ->name('verifikasi.pengguna.update');
+    });
+});

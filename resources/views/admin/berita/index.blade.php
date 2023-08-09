@@ -20,7 +20,7 @@
                 </form>
             </div>
             <div class="col-md-2 my-auto">
-                <a href="{{ route('kelola-berita.create') }}" class="btn btn-success" style="font-size: 15px">Tambah
+                <a href="{{ route('kelola-berita.create') }}" class="btn btn-success btn-sm" style="font-size: 15px">Tambah
                     Berita</a>
             </div>
         </div>
@@ -51,12 +51,12 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ route('kelola-berita.edit', $item) }}" class="btn btn-primary">Edit</a>
+                                <a href="{{ route('kelola-berita.edit', $item) }}" class="btn btn-primary btn-sm">Edit</a>
                                 <form action="{{ route('kelola-berita.destroy', $item) }}" method="POST"
                                     style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger"
+                                    <button type="submit" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Apakah Anda yakin ingin menghapus data?')">Delete</button>
                                 </form>
                             </td>
@@ -69,5 +69,6 @@
                 </tbody>
             </table>
         </div>
+        {{ $berita->links() }}
     </div>
 @endsection

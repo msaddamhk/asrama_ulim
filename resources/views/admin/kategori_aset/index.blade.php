@@ -20,7 +20,7 @@
                 </form>
             </div>
             <div class="col-md-2 my-auto">
-                <a href="{{ route('kategori-aset.create') }}" class="btn btn-success" style="font-size: 15px">Tambah
+                <a href="{{ route('kategori-aset.create') }}" class="btn btn-success btn-sm" style="font-size: 15px">Tambah
                     kategori</a>
             </div>
         </div>
@@ -42,12 +42,13 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->nama }}</td>
                             <td>
-                                <a href="{{ route('kategori-aset.edit', $item->id) }}" class="btn btn-primary">Edit</a>
+                                <a href="{{ route('kategori-aset.edit', $item->id) }}"
+                                    class="btn btn-primary btn-sm">Edit</a>
                                 <form action="{{ route('kategori-aset.destroy', $item->id) }}" method="POST"
                                     style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger"
+                                    <button type="submit" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Apakah Anda yakin ingin menghapus data?')">Delete</button>
                                 </form>
                             </td>
@@ -60,5 +61,6 @@
                 </tbody>
             </table>
         </div>
+        {{ $kategori_aset->links() }}
     </div>
 @endsection

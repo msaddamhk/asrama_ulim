@@ -63,9 +63,9 @@
                             <div class="mb-3">
                                 <label for="no_hp" class="col-form-label text-md-end">No HP</label>
                                 <div class="">
-                                    <input id="no_hp" type="number"
-                                        class="form-control @error('no_hp') is-invalid @enderror" name="no_hp"
-                                        value="{{ old('no_hp') }}" required autocomplete="no_hp">
+                                    <input id="no_hp" type="text" class="form-control" name="no_hp"
+                                        pattern="^62\d{9,}$" placeholder="Contoh: 628123456789" value="{{ old('no_hp') }}"
+                                        required>
 
                                     @error('no_hp')
                                         <span class="invalid-feedback" role="alert">

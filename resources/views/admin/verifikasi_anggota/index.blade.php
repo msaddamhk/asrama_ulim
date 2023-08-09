@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <input type="text" name="cari" value="{{ request('cari') }}"
-                        placeholder="Masukkan nama"class="form-control" />
+                        placeholder="Masukkan nama"class="form-control " />
                 </div>
 
                 <div class="col-md-4">
@@ -54,15 +54,15 @@
                             <td>{{ $item->alamat }}</td>
                             <td>
                                 <a href="{{ route('verifikasi.pengguna.detail', $item->id) }}"
-                                    class="btn btn-primary">Detail</a>
+                                    class="btn btn-primary btn-sm">Detail</a>
                                 @if ($item->status == false)
                                     <form action="{{ route('verifikasi.pengguna.update', $item->id) }}" method="POST"
                                         style="display:inline;">
                                         @csrf
-                                        <button type="submit" class="btn btn-danger">Verifikasi</button>
+                                        <button type="submit" class="btn btn-danger btn-sm">Verifikasi</button>
                                     </form>
                                 @else
-                                    <button type="submit" class="btn btn-danger" disabled>Sudah
+                                    <button type="submit" class="btn btn-danger btn-sm" disabled>Sudah
                                         di verifikasi</button>
                                 @endif
                             </td>
@@ -75,6 +75,7 @@
                 </tbody>
             </table>
         </div>
+        {{ $verifikasi_pengguna->links() }}
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {

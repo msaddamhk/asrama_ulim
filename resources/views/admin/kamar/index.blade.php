@@ -20,7 +20,7 @@
                 </form>
             </div>
             <div class="col-md-2 my-auto">
-                <a href="{{ route('kelola-ruang.create') }}" class="btn btn-success" style="font-size: 15px">Tambah
+                <a href="{{ route('kelola-ruang.create') }}" class="btn btn-success btn-sm" style="font-size: 15px">Tambah
                     Reuang</a>
             </div>
         </div>
@@ -59,13 +59,15 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ route('kelola-ruang.edit', $item->id) }}" class="btn btn-primary">Edit</a>
-                                <a href="{{ route('kamar.aset.index', $item->id) }}" class="btn btn-warning">Aset</a>
+                                <a href="{{ route('kelola-ruang.edit', $item->id) }}"
+                                    class="btn btn-primary btn-sm">Edit</a>
+                                <a href="{{ route('kamar.aset.index', $item->id) }}"
+                                    class="btn btn-warning btn-sm">Aset</a>
                                 <form action="{{ route('kelola-ruang.destroy', $item->id) }}" method="POST"
                                     style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger"
+                                    <button type="submit" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Apakah Anda yakin ingin menghapus data?')">Delete</button>
                                 </form>
                             </td>
@@ -78,5 +80,6 @@
                 </tbody>
             </table>
         </div>
+        {{ $kamar->links() }}
     </div>
 @endsection

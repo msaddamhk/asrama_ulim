@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('rule', ['USER', 'ADMIN']);
             $table->string('alamat')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('foto')->nullable();
@@ -27,7 +28,6 @@ return new class extends Migration
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->enum('jenis_kelamin', ['LAKI-LAKI', 'PEREMPUAN'])->nullable();
-            $table->enum('rule', ['USER', 'ADMIN'])->default("USER");
             $table->boolean('status')->default(false);
             $table->rememberToken();
             $table->timestamps();

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user');
             $table->date('tanggal_masuk');
             $table->date('tanggal_keluar');
-            $table->enum('status', ['SELESAI', 'AKTIF', 'BELUM DI VERIFIKASI']);
+            $table->enum('status', ['SELESAI', 'AKTIF', 'BELUM DI VERIFIKASI', 'DI TOLAK'])->default("BELUM DI VERIFIKASI");
             $table->foreign('id_kamar')->references('id')->on('kamar')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->foreign('id_user')->references('id')->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->timestamps();

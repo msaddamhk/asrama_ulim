@@ -16,4 +16,9 @@ class Kamar extends Model
     {
         return $this->hasMany(Aset::class, 'id_kamar');
     }
+
+    public function pesananKamar()
+    {
+        return $this->hasMany(PesananKamar::class, 'id_kamar');
+    }
 }
