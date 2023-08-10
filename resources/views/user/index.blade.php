@@ -42,42 +42,26 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
-                    <article class="blog-post">
-                        <img src="img/project5.jpg" alt="">
-                        <a href="#" class="tag">Web Design</a>
-                        <div class="content">
-                            <small>01 Dec, 2022</small>
-                            <h5>Web Design trends in 2022</h5>
-                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
-                                piece of classical Latin literature from</p>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-md-4">
-                    <article class="blog-post">
-                        <img src="img/project4.jpg" alt="">
-                        <a href="#" class="tag">Programming</a>
-                        <div class="content">
-                            <small>01 Dec, 2022</small>
-                            <h5>Web Design trends in 2022</h5>
-                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
-                                piece of classical Latin literature from</p>
-                        </div>
-                    </article>
-                </div>
-                <div class="col-md-4">
-                    <article class="blog-post">
-                        <img src="img/project2.jpg" alt="">
-                        <a href="#" class="tag">Marketing</a>
-                        <div class="content">
-                            <small>01 Dec, 2022</small>
-                            <h5>Web Design trends in 2022</h5>
-                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a
-                                piece of classical Latin literature from</p>
-                        </div>
-                    </article>
-                </div>
+
+                @foreach ($berita as $item)
+                    <div class="col-md-4">
+                        <a href="{{ route('detail-berita', [$item]) }}">
+                            <div class="card">
+                                <img src="{{ asset('storage/berita/' . $item->foto) }}" alt="" height="250px"
+                                    style="object-fit: cover">
+                                <a href="#"
+                                    class="label-top bg-dark text-decoration-none">{{ $item->kategoriBerita->nama }}</a>
+                                <div class="card-body">
+                                    <small>{{ $item->created_at->format('d F Y') }}
+                                    </small>
+                                    <h5>{{ $item->judul }}</h5>
+                                    <p>{{ implode(' ', array_slice(str_word_count(strip_tags($item->deskripsi), 2), 0, 20)) }}...
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -100,7 +84,8 @@
                         <a href="{{ route('detail-kamar', [$item]) }}">
                             <div class="project">
                                 <div class="overlay"></div>
-                                <img src="{{ asset('storage/kamar/' . $item->foto) }}" alt="">
+                                <img src="{{ asset('storage/kamar/' . $item->foto) }}" alt="" height="350px"
+                                    style="object-fit: cover">
                                 <div class="content">
                                     <h3 class="text-white">{{ $item->no_kamar }}</h3>
                                 </div>
@@ -124,46 +109,19 @@
             </div>
         </div>
         <div id="projects-slider" class="owl-theme owl-carousel">
-            <div class="project">
-                <div class="overlay"></div>
-                <img src="img/project1.jpg" alt="">
-                <div class="content">
-                    <h2>Consulting Marketing</h2>
-                    <h6>Website Design</h6>
+
+            @foreach ($galeri as $item)
+                <div class="project">
+                    <div class="overlay"></div>
+                    <img src="{{ asset('storage/galeri/' . $item->foto) }}" alt="" height="400px"
+                        style="object-fit: cover">
+                    <div class="content">
+                        <p class="text-white">{{ $item->created_at->format('d F Y') }}
+                        </p>
+                    </div>
                 </div>
-            </div>
-            <div class="project">
-                <div class="overlay"></div>
-                <img src="img/project2.jpg" alt="">
-                <div class="content">
-                    <h2>Consulting Marketing</h2>
-                    <h6>Website Design</h6>
-                </div>
-            </div>
-            <div class="project">
-                <div class="overlay"></div>
-                <img src="img/project3.jpg" alt="">
-                <div class="content">
-                    <h2>Consulting Marketing</h2>
-                    <h6>Website Design</h6>
-                </div>
-            </div>
-            <div class="project">
-                <div class="overlay"></div>
-                <img src="img/project4.jpg" alt="">
-                <div class="content">
-                    <h2>Consulting Marketing</h2>
-                    <h6>Website Design</h6>
-                </div>
-            </div>
-            <div class="project">
-                <div class="overlay"></div>
-                <img src="img/project5.jpg" alt="">
-                <div class="content">
-                    <h2>Consulting Marketing</h2>
-                    <h6>Website Design</h6>
-                </div>
-            </div>
+            @endforeach
+
         </div>
     </section>
 @endsection

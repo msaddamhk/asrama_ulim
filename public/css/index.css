@@ -9,12 +9,12 @@ body {
   position: relative;
 }
 
-/* td {
-  font-size: 12px;
+td {
+  font-size: 14px;
 }
 
 th {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 label {
@@ -22,16 +22,17 @@ label {
 }
 
 a.btn {
-  font-size: 8px;
+  font-size: 12px;
 }
 
 button.btn {
-  font-size: 8px;
+  font-size: 12px;
 }
 
 input::placeholder {
-  font-size: 11px;
-} */
+  font-size: 13px;
+}
+
 
 .btn-statistics,
 .nav-input,

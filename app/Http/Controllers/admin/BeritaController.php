@@ -36,7 +36,7 @@ class BeritaController extends Controller
         $request->validate([
             'judul' => 'required|max:255',
             'kategori_berita' => 'required|max:255',
-            'deskripsi' => 'required|max:255',
+            'deskripsi' => 'required',
             'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
@@ -80,7 +80,7 @@ class BeritaController extends Controller
         $request->validate([
             'judul' => 'required|max:255',
             'kategori_berita' => 'required|max:255',
-            'deskripsi' => 'required|max:255',
+            'deskripsi' => 'required',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 

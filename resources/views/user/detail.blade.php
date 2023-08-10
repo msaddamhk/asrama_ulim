@@ -3,6 +3,13 @@
 @section('content')
     <section>
         <div class="container">
+            @if (auth()->user()->status == false)
+                <div class="alert alert-danger mb-3" role="alert">
+                    Akun Anda Sedang di Verifikasi Admin
+                </div>
+            @endif
+
+
             <div class="row">
                 <div class="col-md-7">
                     <a href="{{ asset('storage/kamar/' . $kamar->foto) }}">
@@ -47,13 +54,18 @@
                                 value="{{ $kamar->id }}">
                             <div class="mb-3">
                                 <label for="tanggal_reservasi" class="form-label">Tanggal Masuk</label>
-                                <input type="date" class="form-control" id="tanggal_reservasi" name="tanggal_masuk">
+                                <input type="date" class="form-control" id="tanggal_reservasi" name="tanggal_masuk"
+                                    required>
                             </div>
                             <div class="mb-3">
                                 <label for="tanggal_keluar" class="form-label">Tanggal Keluar</label>
-                                <input type="date" class="form-control" id="tanggal_keluar" name="tanggal_keluar">
+                                <input type="date" class="form-control" id="tanggal_keluar" name="tanggal_keluar"
+                                    required>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+
+                            <button type="submit" class="btn btn-primary"
+                                {{ auth()->user()->status ? '' : 'disabled' }}>Submit</button>
+
                         </form>
 
                     </div>

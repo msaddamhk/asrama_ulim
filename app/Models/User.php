@@ -35,6 +35,11 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function pesananKamar()
+    {
+        return $this->hasMany(PesananKamar::class, 'id_user');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

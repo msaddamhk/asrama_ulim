@@ -12,6 +12,8 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
     <title>Asrama mahasiswa Ulim</title>
 </head>
 
@@ -26,7 +28,6 @@
                 </div>
                 <div class="col-auto social-icons">
                     <a href="#"><i class='bx bxl-facebook'></i></a>
-                    <a href="#"><i class='bx bxl-twitter'></i></a>
                     <a href="#"><i class='bx bxl-instagram'></i></a>
                 </div>
             </div>
@@ -35,7 +36,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Asrama mahasiswa Ulim<span class="dot">.</span></a>
+            <a class="navbar-brand fs-5" href="/">Asrama Mahasiswa Ulim</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -43,7 +44,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
+                        <a class="nav-link" href="{{ route('beranda') }}">Beranda</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#about">Profil</a>
@@ -57,12 +58,13 @@
                             Informasi
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Berita</a></li>
+                            <li><a class="dropdown-item" href="{{ route('berita') }}">Berita</a></li>
                             <li><a class="dropdown-item" href="#">Peta</a></li>
+                            <li><a class="dropdown-item" href="{{ route('pengurus.index') }}">Daftar Pengurus</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#team">Galeri</a>
+                        <a class="nav-link" href="{{ route('galeri') }}">Galeri</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#team">Tanggapan</a>
@@ -101,18 +103,27 @@
     @yield('content')
 
     <footer>
-        <div class="footer-top text-center">
+        <div class="py-5">
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6 text-center">
-                        <h4 class="navbar-brand">Asrama mahasiswa Ulim<span class="dot">.</span></h4>
-                        <p>Jl Lorem ipsum dolor, sit amet consectetur adipisicing <br>elit. Tempora, sint?</p>
-                        <div class="col-auto social-icons">
-                            <a href="#"><i class='bx bxl-facebook'></i></a>
-                            <a href="#"><i class='bx bxl-twitter'></i></a>
-                            <a href="#"><i class='bx bxl-instagram'></i></a>
-                        </div>
-                    </div>
+                <h5 class="navbar-brand">Asrama Mahasiswa Ulim<span class="dot">.</span></h5>
+                <p>Jl Lorem ipsum dolor, sit amet consectetur adipisicing <br>elit. Tempora, sint?</p>
+                <hr>
+                <div class="row justify-content-between">
+                    <p class="col-md-4 mb-0 text-muted">&copy; 2022 Company, Inc</p>
+
+                    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                        <li class="ms-3">
+                            <a class="text-muted" href="#">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                        </li>
+                        <li class="ms-3">
+                            <a class="text-muted" href="#">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                        </li>
+
+                    </ul>
                 </div>
             </div>
         </div>

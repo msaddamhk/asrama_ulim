@@ -24,7 +24,7 @@ class WaController extends Controller
         // $numbers = "085760557702";
 
         $twilioSID = 'ACab89c8d440c9e1a6d703df8a67049dc2';
-        $twilioToken = '61f2acd57b6c3bf306598c62c31ec184';
+        $twilioToken = '1570dce4e41667395fe9a6c3ac7381d4';
         $twilioPhoneNumber = '+14155238886';
 
         $twilio = new Client($twilioSID, $twilioToken);

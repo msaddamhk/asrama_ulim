@@ -72,13 +72,13 @@
                                         onclick="return confirm('Apakah Anda yakin ingin menghapus data?')">Delete</button>
                                 </form>
 
-                                <a class="btn btn-warning" href="{{ route('no_aset.index', $item) }}">Download
+                                <a class="btn btn-warning btn-sm" href="{{ route('no_aset.index', $item) }}">Download
                                     No Aset</a>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="9" class="text-center">Tidak Ada data</td>
+                            <td colspan="10" class="text-center">Tidak Ada data</td>
                         </tr>
                     @endforelse
                 </tbody>

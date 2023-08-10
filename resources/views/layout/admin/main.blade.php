@@ -87,8 +87,9 @@
                     <span>Pengguna</span>
                 </a>
 
-                <a href="#" class="sidebar-item">
-                    <i class="fa-solid fa-people-roof me-2"></i>
+                <a href="{{ route('kelola-pengurus.index') }}"
+                    class="sidebar-item {{ Request::is('kelola-pengurus*') ? 'active' : '' }}">
+                    <i class="fa-solid fa-people-roof me-2 "></i>
                     <span>Pengurus</span>
                 </a>
 
