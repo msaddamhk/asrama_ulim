@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kamar;
 use App\Models\PesananKamar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -29,6 +30,10 @@ class KelolaPengajuanKamarController extends Controller
 
     public function update_aktif(PesananKamar $pengajuan_kamar)
     {
+        $kamar = Kamar::where('id',  $pengajuan_kamar->id_kamar)->first();
+        $kamar->status = "0";
+        $kamar->save();
+
         $pengajuan_kamar->status = "AKTIF";
         $pengajuan_kamar->save();
 
@@ -61,6 +66,10 @@ class KelolaPengajuanKamarController extends Controller
 
     public function update_selesai(PesananKamar $pengajuan_kamar)
     {
+        $kamar = Kamar::where('id',  $pengajuan_kamar->id_kamar)->first();
+        $kamar->status = "1";
+        $kamar->save();
+
         $pengajuan_kamar->status = "SELESAI";
         $pengajuan_kamar->save();
 

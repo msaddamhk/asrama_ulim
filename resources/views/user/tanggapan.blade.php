@@ -5,10 +5,6 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-
-                    <h5>Persyaratan sebagai Pengurus</h5>
-                    <p>- Minimal sudah tinggal selama 2 tahun</p>
-                    <hr>
                     @if (session('success'))
                         <div class="alert alert-success">
                             {{ session('success') }}
@@ -19,20 +15,13 @@
                             Akun Anda Sedang di Verifikasi Admin
                         </div>
                     @endif
-                    <h5>Pengajuan Pengurus</h5>
+                    <h5>Kritik dan Saran</h5>
                     <hr>
-                    <form action="{{ route('pengurus.store') }}" method="post">
+                    <form action="{{ route('tanggapan.store') }}" method="post">
                         @csrf
                         <div class="form-group mb-3">
-                            <label for="jabatan">Jabatan</label>
-                            <select name="jabatan" class="form-control" required>
-                                <option value="Sekretaris">Sekretaris</option>
-                                <option value="Bendahara">Bendahara</option>
-                            </select>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="proker">Program Kerja (Proker)</label>
-                            <input type="text" name="proker" class="form-control" required>
+                            <textarea type="text" name="tanggapan" class="form-control" rows="5" required>
+                            </textarea>
                         </div>
                         <button type="submit" class="btn btn-primary"
                             {{ auth()->user()->status ? '' : 'disabled' }}>Kirim</button>

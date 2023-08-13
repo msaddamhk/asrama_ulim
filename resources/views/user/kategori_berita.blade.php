@@ -5,7 +5,7 @@
         <div class="container">
             <div class="d-flex justify-content-between">
                 <h2>Berita</h2>
-                <form action="{{ route('berita') }}" method="GET">
+                <form action="{{ route('berita-kategori.index', $berita_kategori) }}" method="GET">
                     <div class="d-flex">
                         <input type="search" name="cari" value="{{ request('cari') }}"
                             placeholder="Masukkan judul berita"class="form-control me-3" />

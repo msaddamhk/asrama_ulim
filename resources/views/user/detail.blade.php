@@ -3,7 +3,7 @@
 @section('content')
     <section>
         <div class="container">
-            @if (auth()->user()->status == false)
+            @if (auth()->check() && auth()->user()->status == false)
                 <div class="alert alert-danger mb-3" role="alert">
                     Akun Anda Sedang di Verifikasi Admin
                 </div>
@@ -48,7 +48,7 @@
 
                         <p class="m-0">Ajukan Kamar</p>
                         <hr>
-                        <form method="POST" action="{{ route('pengajuan-kamar.store') }}">
+                        <form method="POST" action="{{ route('ajukan-kamar.store') }}">
                             @csrf
                             <input type="hidden" class="form-control" id="tanggal_reservasi" name="kamar"
                                 value="{{ $kamar->id }}">
@@ -63,9 +63,12 @@
                                     required>
                             </div>
 
-                            <button type="submit" class="btn btn-primary"
-                                {{ auth()->user()->status ? '' : 'disabled' }}>Submit</button>
-
+                            @if (auth()->check())
+                                <button type="submit" class="btn btn-primary"
+                                    {{ auth()->user()->status ? '' : 'disabled' }}>Submit</button>
+                            @else
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            @endif
                         </form>
 
                     </div>

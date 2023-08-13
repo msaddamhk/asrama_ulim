@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class PesanKamarController extends Controller
 {
+
+    public function index()
+    {
+        $pengajuan_kamar = PesananKamar::where('id_user', auth()->user()->id)->latest()->paginate(15);
+        return view('user.pengajuan_kamar', compact('pengajuan_kamar'));
+    }
+
     public function store(Request $request)
     {
 
@@ -43,6 +50,6 @@ class PesanKamarController extends Controller
 
         $pengajuan_kamar->save();
 
-        return "berhasil";
+        return redirect()->route('daftar-pengajuan-kamar.index');
     }
 }

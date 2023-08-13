@@ -1,3 +1,6 @@
+<?php
+$siteMeta = \App\Models\SiteMeta::where('key', 'pendaftaran_pengurus')->first();
+?>
 <!doctype html>
 <html lang="en">
 
@@ -47,10 +50,10 @@
                         <a class="nav-link" href="{{ route('beranda') }}">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">Profil</a>
+                        <a class="nav-link" href="{{ route('profil') }}">Profil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#services">Keasramaan</a>
+                        <a class="nav-link" href="{{ route('keasramaan') }}">Keasramaan</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -59,15 +62,19 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('berita') }}">Berita</a></li>
-                            <li><a class="dropdown-item" href="#">Peta</a></li>
-                            <li><a class="dropdown-item" href="{{ route('pengurus.index') }}">Daftar Pengurus</a></li>
+                            {{-- <li><a class="dropdown-item" href="#">Peta</a></li> --}}
+                            @if ($siteMeta->value == '1')
+                                <li><a class="dropdown-item" href="{{ route('pengurus.index') }}">Daftar Pengurus</a>
+                                </li>
+                            @endif
+
                         </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('galeri') }}">Galeri</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#team">Tanggapan</a>
+                        <a class="nav-link" href="{{ route('tanggapan.index') }}">Tanggapan</a>
                     </li>
 
                 </ul>
@@ -79,8 +86,11 @@
                             {{ auth('')->user()->name }}
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Pesanan</a></li>
-                            <li><a class="dropdown-item" href="#">Tanggapan</a></li>
+                            <li><a class="dropdown-item" href="{{ route('daftar-pengajuan-kamar.index') }}">Pengajuan
+                                    Kamar</a>
+                            </li>
+                            <li><a class="dropdown-item" href="{{ route('daftar-tanggapan.index') }}">Tanggapan</a>
+                            </li>
                             <li>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
@@ -106,10 +116,16 @@
         <div class="py-5">
             <div class="container">
                 <h5 class="navbar-brand">Asrama Mahasiswa Ulim<span class="dot">.</span></h5>
-                <p>Jl Lorem ipsum dolor, sit amet consectetur adipisicing <br>elit. Tempora, sint?</p>
+                <p>Beurawe, Kec. Kuta Alam, Kota Banda Aceh, Aceh 24415</p>
+                <div class="card col-md-6">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31768.55362357057!2d95.3329874!3d5.5567608!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3040370c13e739ff%3A0x66e5d28bce6df36b!2sASRAMA%20MAHASISWA%20ULIM%20PIDIE%20JAYA!5e0!3m2!1sid!2sid!4v1691926026008!5m2!1sid!2sid"
+                        height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
                 <hr>
                 <div class="row justify-content-between">
-                    <p class="col-md-4 mb-0 text-muted">&copy; 2022 Company, Inc</p>
+                    <p class="col-md-4 mb-0 text-muted">&copy; 2023 Asrama Ulim</p>
 
                     <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
                         <li class="ms-3">

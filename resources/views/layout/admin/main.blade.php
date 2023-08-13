@@ -30,17 +30,17 @@
         <div class="col-12 col-lg-3 col-navbar d-none d-xl-block">
             <aside class="sidebar">
 
-                <div class="">
-                    <h3>Admin</h3>
-                </div>
-
-                <button id="toggle-navbar" onclick="toggleNavbar()">
-                    <img src="./assets/img/global/navbar-times.svg" alt="" />
+                <button id="toggle-navbar" class="ms-auto" onclick="toggleNavbar()">
+                    <i class="bi bi-x-circle"></i>
                 </button>
+                <div class="d-flex bg-dange">
+                    <h4 class="my-auto fw-bold">Admin</h4>
+                </div>
 
                 <hr>
 
-                <a href="#" class="sidebar-item">
+                <a href="{{ route('dashboard.index') }}"
+                    class="sidebar-item {{ Request::is('dashboard*') ? 'active' : '' }}">
                     <i class="fa-solid fa-gauge me-2"></i>
                     <span>Dashboard</span>
                 </a>
@@ -99,7 +99,8 @@
                     <span>Pengajuan Kamar</span>
                 </a>
 
-                <a href="{{ route('tamu.index') }}" class="sidebar-item">
+                <a href="{{ route('kelola-tanggapan.index') }}"
+                    class="sidebar-item {{ Request::is('kelola-tanggapan*') ? 'active' : '' }}">
                     <i class="fa-solid fa-reply me-2"></i>
                     <span>Tanggapan</span>
                 </a>
@@ -113,6 +114,12 @@
                     class="sidebar-item {{ Request::is('broadcast-wa*') ? 'active' : '' }}">
                     <i class="bi bi-whatsapp me-2"></i>
                     <span>Wa Broadcast</span>
+                </a>
+
+                <a href="{{ route('kelola-admin.index') }}"
+                    class="sidebar-item {{ Request::is('kelola-admin*') ? 'active' : '' }}">
+                    <i class="bi bi-people me-2"></i>
+                    <span>Kelola Admin</span>
                 </a>
 
                 <a class="sidebar-item" href="{{ route('logout') }}"
@@ -132,9 +139,10 @@
         <div class="col-12 col-xl-9">
             <div class="nav">
                 <div class="d-flex justify-content-between align-items-center w-100 mb-3 mb-md-0">
+
                     <div class="d-flex justify-content-start align-items-center">
                         <button id="toggle-navbar" onclick="toggleNavbar()">
-                            tekan
+                            <i class="bi bi-list"></i>
                         </button>
                     </div>
                 </div>
@@ -149,7 +157,6 @@
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script> --}}
-
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
