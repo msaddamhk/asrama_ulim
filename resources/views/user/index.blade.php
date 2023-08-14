@@ -29,7 +29,7 @@
     </div>
 
 
-    <section id="blog">
+    <section>
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -66,7 +66,7 @@
 
 
 
-    <section class="bg-light" id="team">
+    <section class="bg-light">
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -96,7 +96,7 @@
     </section>
 
 
-    <section id="portfolio">
+    <section>
         <div class="container">
             <div class="row">
                 <div class="col-12">
