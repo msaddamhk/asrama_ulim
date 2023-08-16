@@ -25,7 +25,7 @@ class PengurusController extends Controller
             $sekarang = Carbon::now();
             $selisihTahun = $tanggalMasuk->diffInYears($sekarang);
 
-            // $tanggalTertentu = Carbon::createFromDate(2026, 10, 20);
+            // $tanggalTertentu = Carbon::createFromDate(2027, 10, 20);
             // $selisihTahun = $tanggalMasuk->diffInYears($tanggalTertentu);
 
             if ($selisihTahun >= 2) {
