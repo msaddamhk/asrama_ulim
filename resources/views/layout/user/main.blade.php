@@ -63,9 +63,12 @@ $siteMeta = \App\Models\SiteMeta::where('key', 'pendaftaran_pengurus')->first();
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('berita') }}">Berita</a></li>
                             {{-- <li><a class="dropdown-item" href="#">Peta</a></li> --}}
-                            @if ($siteMeta->value == '1')
-                                <li><a class="dropdown-item" href="{{ route('pengurus.index') }}">Daftar Pengurus</a>
-                                </li>
+                            @if ($siteMeta)
+                                @if ($siteMeta->value == '1')
+                                    <li><a class="dropdown-item" href="{{ route('pengurus.index') }}">Daftar
+                                            Pengurus</a>
+                                    </li>
+                                @endif
                             @endif
 
                         </ul>

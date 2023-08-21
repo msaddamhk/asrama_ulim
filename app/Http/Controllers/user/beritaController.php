@@ -19,8 +19,8 @@ class beritaController extends Controller
 
     public function berita_kategori(KategoriBerita $berita_kategori)
     {
-        $berita = Berita::where('kategori_berita_id', $berita_kategori)
-            ->Orwhere('judul', 'like', '%' . request('cari') . '%')
+        $berita = Berita::where('kategori_berita_id', $berita_kategori->id)
+            ->where('judul', 'like', '%' . request('cari') . '%')
             ->paginate(6);
         return view('user.kategori_berita', compact('berita', 'berita_kategori'));
     }

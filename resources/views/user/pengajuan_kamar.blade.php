@@ -12,6 +12,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
+                                <th scope="col">Nama Kamar</th>
                                 <th scope="col">Tanggal Masuk</th>
                                 <th scope="col">Tanggal Keluar</th>
                                 <th scope="col">Status</th>
@@ -21,6 +22,7 @@
                             <tbody>
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $item->kamar->no_kamar }}</td>
                                     <td>{{ $item->tanggal_masuk }}</td>
                                     <td>{{ $item->tanggal_keluar }}</td>
                                     <td>{{ $item->status }}</td>

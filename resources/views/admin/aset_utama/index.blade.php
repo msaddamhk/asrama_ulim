@@ -15,7 +15,7 @@
             <div class="col-md-10">
                 <form action="{{ route('kelola-aset.index') }}" method="GET">
                     <input type="text" name="cari" value="{{ request('cari') }}"
-                        placeholder="Masukkan Nama aset"class="form-control" />
+                        placeholder="Masukkan No aset"class="form-control" />
                 </form>
             </div>
             <div class="col-md-2 my-auto">

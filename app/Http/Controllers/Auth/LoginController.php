@@ -17,7 +17,7 @@ class LoginController extends Controller
     public function authenticated()
     {
         if (auth()->user()->rule == "ADMIN") {
-            return redirect()->route('kategori-aset.index');
+            return redirect()->route('dashboard.index');
         } else {
             return redirect()->intended('/');
         }

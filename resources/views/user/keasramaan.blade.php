@@ -1,6 +1,9 @@
 @extends('layout.user.main')
 
 @section('content')
+    <?php
+    $siteMeta2 = \App\Models\SiteMeta::where('key', 'kelola_pengurus')->first();
+    ?>
     <section>
         <div class="container">
             <div class="col-md-12">
@@ -55,7 +58,7 @@
                     <div class="col-md-3">
                         <div class="project">
                             <div class="overlay"></div>
-                            <img src="https://cintakasihtzuchi.sch.id/wp-content/uploads/2018/12/Aula-Lantai-2-Gedung-C.jpg"
+                            <img src="https://www.its.ac.id/informatika/wp-content/uploads/sites/44/2020/04/WhatsApp-Image-2020-04-08-at-09.25.41-1-1024x768.jpeg"
                                 alt="" height="350px" style="object-fit: cover">
                             <div class="content">
                                 <h5 class="text-white">Aula</h5>
@@ -138,6 +141,16 @@
                     <li>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptas, nam.</li>
                 </ul>
 
+                <h3 class="mt-4">Struktur Pengurus</h3>
+                <hr>
+                @if ($siteMeta2)
+                    <div class="col-md-6">
+                        <a href="{{ asset('storage/struktur_pengurus/' . $siteMeta2->value) }}">
+                            <img id="frame" style="object-fit:coverl"
+                                src="{{ asset('storage/struktur_pengurus/' . $siteMeta2->value) }}">
+                        </a>
+                    </div>
+                @endif
             </div>
         </div>
     </section>

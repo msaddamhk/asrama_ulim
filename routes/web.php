@@ -23,7 +23,6 @@ use App\Http\Controllers\user\PesanKamarController;
 use App\Http\Controllers\user\TanggapanController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +75,8 @@ Route::middleware('auth')->group(function () {
 
     Route::middleware('can:isAdmin')->group(function () {
 
+        Route::resource('tamu', TamuController::class);
+
         Route::resource('kelola-ruang', KamarController::class);
 
         Route::resource('kelola-galeri', GaleriController::class);
@@ -119,11 +120,11 @@ Route::middleware('auth')->group(function () {
         Route::post('verifikasi-anggota/{verifikasi_pengguna}', [VerifikasiAnggotaController::class, 'update'])
             ->name('verifikasi.pengguna.update');
 
-        Route::resource('tamu', TamuController::class);
-
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
         Route::post('/dashboard/update-pendaftaran-pengurus', [DashboardController::class, 'pendaftaran_pengurus'])->name('pendaftaran-pengurus.store');
+
+        Route::post('/dashboard/update-kelola-pengurus', [DashboardController::class, 'kelola_pengurus'])->name('kelola-struktur-pengurus.store');
 
         Route::get('/kelola-tanggapan', [KelolaTanggapanController::class, 'index'])->name('kelola-tanggapan.index');
 

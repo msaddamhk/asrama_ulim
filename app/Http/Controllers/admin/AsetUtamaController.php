@@ -18,7 +18,7 @@ class AsetUtamaController extends Controller
     public function index()
     {
         $aset = Aset::latest()
-            ->where('nama', 'like', '%' . request('cari') . '%')
+            ->where('no_aset', 'like', '%' . request('cari') . '%')
             ->paginate(15);
 
         return view('admin.aset_utama.index', compact('aset'));
