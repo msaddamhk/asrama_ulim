@@ -21,6 +21,7 @@ use App\Http\Controllers\user\GaleriController as UserGaleriController;
 use App\Http\Controllers\user\PengurusController;
 use App\Http\Controllers\user\PesanKamarController;
 use App\Http\Controllers\user\TanggapanController;
+use App\Models\Kamar;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,13 @@ Route::get('/profil', function () {
 Route::get('/keasramaan', function () {
     return view('user.keasramaan');
 })->name('keasramaan');
+
+Route::get('/kamar', function () {
+    $kamar = Kamar::latest()
+        ->where('no_kamar', 'like', '%' . request('cari') . '%')
+        ->paginate(6);
+    return view('user.kamar', compact('kamar'));
+})->name('kamar.index');
 
 Route::get('/berita-kategori/{berita_kategori}', [UserBeritaController::class, 'berita_kategori'])->name('berita-kategori.index');
 

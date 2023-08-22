@@ -7,8 +7,7 @@ $siteMeta = \App\Models\SiteMeta::where('key', 'pendaftaran_pengurus')->first();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-
+    <link rel="icon" type="image/x-icon" href="{{ asset('Logo.png') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
@@ -26,12 +25,12 @@ $siteMeta = \App\Models\SiteMeta::where('key', 'pendaftaran_pengurus')->first();
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-auto">
-                    <p> <i class='bx bxs-envelope'></i> Asrama ulim</p>
-                    <p> <i class='bx bxs-phone-call'></i> 0822134574</p>
+                    <p> <i class='bx bxs-envelope'></i> asramaulim@gmail.com</p>
+                    {{-- <p> <i class='bx bxs-phone-call'></i> 0822134574</p> --}}
                 </div>
                 <div class="col-auto social-icons">
-                    <a href="#"><i class='bx bxl-facebook'></i></a>
-                    <a href="#"><i class='bx bxl-instagram'></i></a>
+                    <a href="https://instagram.com/ulimstudenasosiation?igshid=MzRlODBiNWFlZA==" target="_blank"><i
+                            class='bx bxl-instagram'></i></a>
                 </div>
             </div>
         </div>
@@ -39,7 +38,13 @@ $siteMeta = \App\Models\SiteMeta::where('key', 'pendaftaran_pengurus')->first();
 
     <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
         <div class="container">
-            <a class="navbar-brand fs-5" href="/">Asrama Mahasiswa Ulim</a>
+
+            <a class="navbar-brand text-white" href="/">
+                <img src="{{ asset('Logo.png') }}" alt="" width="100%" height="40" />
+            </a>
+
+            <a class="text-decoration-none" href="/">Asrama Mahasiswa Ulim</a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -62,7 +67,6 @@ $siteMeta = \App\Models\SiteMeta::where('key', 'pendaftaran_pengurus')->first();
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('berita') }}">Berita</a></li>
-                            {{-- <li><a class="dropdown-item" href="#">Peta</a></li> --}}
                             @if ($siteMeta)
                                 @if ($siteMeta->value == '1')
                                     <li><a class="dropdown-item" href="{{ route('pengurus.index') }}">Daftar
@@ -70,8 +74,10 @@ $siteMeta = \App\Models\SiteMeta::where('key', 'pendaftaran_pengurus')->first();
                                     </li>
                                 @endif
                             @endif
-
                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('kamar.index') }}">Kamar</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('galeri') }}">Galeri</a>
@@ -128,26 +134,26 @@ $siteMeta = \App\Models\SiteMeta::where('key', 'pendaftaran_pengurus')->first();
                 </div>
                 <hr>
                 <div class="row justify-content-between">
-                    <p class="col-md-4 mb-0 text-muted">&copy; 2023 Asrama Ulim</p>
+                    <p class="col-md-4 mb-0 text-muted">&copy;
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        Asrama Mahasiswa Ulim
+                    </p>
 
                     <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
                         <li class="ms-3">
-                            <a class="text-muted" href="#">
+                            <a class="text-muted"
+                                href="https://instagram.com/ulimstudenasosiation?igshid=MzRlODBiNWFlZA=="
+                                target="_blank">
                                 <i class="bi bi-instagram"></i>
                             </a>
                         </li>
-                        <li class="ms-3">
-                            <a class="text-muted" href="#">
-                                <i class="bi bi-facebook"></i>
-                            </a>
-                        </li>
-
                     </ul>
                 </div>
             </div>
         </div>
     </footer>
-
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>

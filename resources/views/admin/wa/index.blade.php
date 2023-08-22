@@ -1,7 +1,7 @@
 @extends('layout.admin.main')
 
 @section('content')
-    <h5>Kirim Pesan Keseluruh Anggota</h5>
+    <h5>Kirim Pesan WA</h5>
 
     @if (session('success'))
         <div class="alert alert-success">

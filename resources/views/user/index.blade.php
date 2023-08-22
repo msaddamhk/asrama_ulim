@@ -8,8 +8,6 @@
                 <div class="row">
                     <div class="col-12 text-center text-white">
                         <h1 class="display-3 my-4">Asrama Mahasiswa<br />Ulim Pidie Jaya</h1>
-                        {{-- <a href="#" class="btn btn-brand">Get Started</a>
-                        <a href="#" class="btn btn-outline-light ms-3">Our work</a> --}}
                     </div>
                 </div>
             </div>
@@ -110,13 +108,15 @@
 
             @foreach ($galeri as $item)
                 <div class="project">
-                    <div class="overlay"></div>
-                    <img src="{{ asset('storage/galeri/' . $item->foto) }}" alt="" height="400px"
-                        style="object-fit: cover">
-                    <div class="content">
-                        <p class="text-white">{{ $item->created_at->format('d F Y') }}
-                        </p>
-                    </div>
+                    <a href="{{ asset('storage/galeri/' . $item->foto) }}">
+                        <div class="overlay"></div>
+                        <img src="{{ asset('storage/galeri/' . $item->foto) }}" alt="" height="400px"
+                            style="object-fit: cover">
+                        <div class="content">
+                            <p class="text-white">{{ $item->created_at->format('d F Y') }}
+                            </p>
+                        </div>
+                    </a>
                 </div>
             @endforeach
         </div>

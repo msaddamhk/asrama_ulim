@@ -98,6 +98,7 @@ class KamarController extends Controller
         $kamar->kapasitas = $request->kapasitas;
         $kamar->lantai = $request->lantai;
         $kamar->luas_kamar = $request->luas_kamar;
+        $kamar->status = $request->status;
         $kamar->save();
 
         return redirect()->route('kelola-ruang.index')->with('success', 'kamar berhasil di update.');

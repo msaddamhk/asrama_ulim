@@ -21,7 +21,7 @@
             </div>
             <div class="col-md-2 my-auto">
                 <a href="{{ route('kelola-ruang.create') }}" class="btn btn-success btn-sm" style="font-size: 15px">Tambah
-                    Reuang</a>
+                    Ruang</a>
             </div>
         </div>
 
@@ -51,7 +51,10 @@
                             <td>{{ $item->lantai }}</td>
                             <td>{{ $item->kapasitas }}</td>
                             <td>{{ $item->luas_kamar }}</td>
-                            <td>{{ $item->status }}</td>
+                            <td>
+                                {{ $item->status == 1 ? 'Tersedia' : 'Tidak Tersedia' }}
+                            </td>
+
                             <td>
                                 <a href="{{ asset('storage/kamar/' . $item->foto) }}">
                                     <img src="{{ asset('storage/kamar/' . $item->foto) }}" class="" width="120px"

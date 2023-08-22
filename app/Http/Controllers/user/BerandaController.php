@@ -37,6 +37,7 @@ class BerandaController extends Controller
     {
         return view('user.detail', compact('kamar'));
     }
+
     public function detail_berita(Berita $berita)
     {
         return view('user.detail_berita', compact('berita'));
