@@ -35,6 +35,7 @@
                         <th>No</th>
                         <th>Nama</th>
                         <th>Tanggapan</th>
+                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -46,14 +47,21 @@
                             <td>{{ $item->tanggapan }}</td>
                             <td>
                                 @if ($item->status == 'BELUM DI TIDAK LANJUTI')
+                                    BELUM DI TINDAK LANJUTI
+                                @else($item->status == 'SEDANG DI TINDAK LANJUTI')
+                                    SUDAH DI TINDAK LANJUTI
+                                @endif
+                            </td>
+                            <td>
+                                @if ($item->status == 'BELUM DI TIDAK LANJUTI')
                                     <form action="{{ route('kelola-tanggapan.update', $item->id) }}" method="POST"
                                         style="display:inline;">
                                         @csrf
-                                        <button type="submit" class="btn btn-success btn-sm">SEDANG DI TINDAK
+                                        <button type="submit" class="btn btn-success btn-sm">UPDATE MENJADI SUDAH DI TINDAK
                                             LANJUTI</button>
                                     </form>
                                 @else
-                                    <button type="submit" class="btn btn-success btn-sm" disabled>SEDANG DI TINDAK
+                                    <button type="submit" class="btn btn-primary btn-sm" disabled>SUDAH DI TINDAK
                                         LANJUTI</button>
                                 @endif
                             </td>

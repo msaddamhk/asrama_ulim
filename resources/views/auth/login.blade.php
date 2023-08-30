@@ -5,7 +5,17 @@
         <div class="row justify-content-center align-items-center h-100">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">{{ __('Login') }}</div>
+                    <div class="card-header bg-black text-white">
+                        <div class="d-flex">
+                            <a class="navbar-brand text-white" href="/">
+                                <img src="{{ asset('Logo.png') }}" alt="" width="45px" />
+                            </a>
+                            <div class="mx-2 my-auto">
+                                <h6 class="m-0 my-auto" style="font-size: 13px">Masuk</h6>
+                                <p class="my-auto" style="font-size: 11px">Silahkan Masuk ke akun Anda</p>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
@@ -58,7 +68,7 @@
 
                             <div class="">
                                 <div class="">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" class="btn btn-dark">
                                         {{ __('Login') }}
                                     </button>
 

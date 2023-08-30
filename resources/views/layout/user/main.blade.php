@@ -25,8 +25,10 @@ $siteMeta = \App\Models\SiteMeta::where('key', 'pendaftaran_pengurus')->first();
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-auto">
-                    <p> <i class='bx bxs-envelope'></i> asramaulim@gmail.com</p>
-                    {{-- <p> <i class='bx bxs-phone-call'></i> 0822134574</p> --}}
+                    <a href="mailto:asramaulim@gmail.com" class="text-decoration-none text-white">
+                        <p> <i class='bx bxs-envelope me-2'></i>asramaulim@gmail.com</p>
+                    </a>
+                    <p> <i class='bx bxs-phone-call me-2'></i>082381002993</p>
                 </div>
                 <div class="col-auto social-icons">
                     <a href="https://instagram.com/ulimstudenasosiation?igshid=MzRlODBiNWFlZA==" target="_blank"><i

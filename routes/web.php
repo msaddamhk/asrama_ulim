@@ -50,6 +50,7 @@ Route::get('/keasramaan', function () {
 
 Route::get('/kamar', function () {
     $kamar = Kamar::latest()
+        ->where('status', "1")
         ->where('no_kamar', 'like', '%' . request('cari') . '%')
         ->paginate(6);
     return view('user.kamar', compact('kamar'));

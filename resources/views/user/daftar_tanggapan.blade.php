@@ -21,7 +21,13 @@
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
                                     <td>{{ $item->tanggapan }}</td>
-                                    <td>{{ $item->status }}</td>
+                                    <td>
+                                        @if ($item->status == 'BELUM DI TIDAK LANJUTI')
+                                            BELUM DI TINDAK LANJUTI
+                                        @else($item->status == 'SEDANG DI TINDAK LANJUTI')
+                                            SUDAH DI TINDAK LANJUTI
+                                        @endif
+                                    </td>
                                 </tr>
 
                             </tbody>
