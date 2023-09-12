@@ -19,35 +19,8 @@
         @csrf
 
         <div class="form-group mb-3">
-            <label for="nama" class="mb-2">Nama</label>
-            <input type="text" class="form-control" id="nama" name="nama" value="{{ old('nama') }}" required>
-        </div>
-
-        <div class="form-group mb-3">
-            <label for="merek" class="mb-2">Merek</label>
-            <input type="text" class="form-control" id="merek" name="merek" value="{{ old('merek') }}" required>
-        </div>
-
-        <div class="form-group mb-3">
-            <label for="kondisi" class="mb-2">Kondisi</label>
-            <input type="text" class="form-control" id="kondisi" name="kondisi" value="{{ old('kondisi') }}" required>
-        </div>
-
-        <div class="form-group mb-3">
-            <label for="jumlah" class="mb-2">jumlah</label>
-            <input type="number" class="form-control" id="jumlah" name="jumlah" value="{{ old('jumlah') }}" required>
-        </div>
-
-        <div class="form-group mb-3">
-            <label for="tanggal_pembelian" class="mb-2">Tanggal Pembelian</label>
-            <input type="date" class="form-control" id="tanggal_pembelian" name="tanggal_pembelian"
-                value="{{ old('tanggal_pembelian') }}" required>
-        </div>
-
-        <div class="form-group mb-3">
             <label for="kategori_aset">Kategori</label>
-            <select class="form-select @error('kategori_aset') is-invalid @enderror" id="kategori_aset"
-                name="kategori_aset">
+            <select class="form-select @error('kategori_aset') is-invalid @enderror" id="kategori_aset" name="kategori_aset">
                 <option selected disabled>Choose Kategori</option>
                 @foreach ($kategori_aset as $kategori)
                     <option value="{{ $kategori->id }}" {{ old('kategori_aset') == $kategori->id ? 'selected' : '' }}>
@@ -74,6 +47,43 @@
             @enderror
         </div>
 
+        <div class="form-group mb-3">
+            <label for="nama" class="mb-2">Nama Aset</label>
+            <select class="form-select @error('nama') is-invalid @enderror" id="nama" name="nama" v-model="nama"
+                required>
+                <option value="" v-if="!nama">Pilih Nama Aset</option>
+                <option value="Meja" {{ old('nama') == 'Meja' ? 'selected' : '' }}>Meja</option>
+                <option value="Kursi" {{ old('nama') == 'Kursi' ? 'selected' : '' }}>Kursi</option>
+                <option value="Lemari" {{ old('nama') == 'Lemari' ? 'selected' : '' }}>Lemari</option>
+                <option value="Tempat Tidur" {{ old('nama') == 'Tempat Tidur' ? 'selected' : '' }}>Tempat Tidur</option>
+                <option value="AC" {{ old('nama') == 'AC' ? 'selected' : '' }}>AC</option>
+                <option value="Kipas Angin" {{ old('nama') == 'Kipas Angin' ? 'selected' : '' }}>Kipas Angin</option>
+                <option value="Mesin Air" {{ old('nama') == 'Mesin Air' ? 'selected' : '' }}>Mesin Air</option>
+                <option value="Komputer" {{ old('nama') == 'Komputer' ? 'selected' : '' }}>Komputer</option>
+                <option value="Laptop" {{ old('nama') == 'Laptop' ? 'selected' : '' }}>Laptop</option>
+                <option value="Sapu" {{ old('nama') == 'Sapu' ? 'selected' : '' }}>Sapu</option>
+                <option value="Kain Pel Lantai" {{ old('nama') == 'Kain Pel Lantai' ? 'selected' : '' }}>Kain Pel Lantai
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="merek" class="mb-2">Merek</label>
+            <input type="text" class="form-control" id="merek" name="merek" value="{{ old('merek') }}" required>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="kondisi" class="mb-2">Kondisi</label>
+            <input type="text" class="form-control" id="kondisi" name="kondisi" value="{{ old('kondisi') }}" required>
+        </div>
+
+        <input type="hidden" class="form-control" id="jumlah" name="jumlah" value="1">
+
+        <div class="form-group mb-3">
+            <label for="tanggal_pembelian" class="mb-2">Tanggal Pembelian</label>
+            <input type="date" class="form-control" id="tanggal_pembelian" name="tanggal_pembelian"
+                value="{{ old('tanggal_pembelian') }}" required>
+        </div>
 
         <div class="form-group mb-3">
             <label for="foto">Foto</label>

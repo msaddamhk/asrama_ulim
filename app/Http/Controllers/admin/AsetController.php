@@ -16,7 +16,7 @@ class AsetController extends Controller
     {
         $aset = $kamar->aset()
             ->latest()
-            ->where('nama', 'like', '%' . request('cari') . '%')
+            ->where('no_aset', 'like', '%' . request('cari') . '%')
             ->paginate(15);
 
         return view('admin.aset.index', compact('aset', 'kamar'));

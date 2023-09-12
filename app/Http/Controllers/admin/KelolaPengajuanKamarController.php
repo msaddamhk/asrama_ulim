@@ -75,4 +75,10 @@ class KelolaPengajuanKamarController extends Controller
 
         return redirect()->route('pengajuan-kamar.index')->with('success', 'Data berhasil di update.');
     }
+
+    public function delete(PesananKamar $pengajuan_kamar)
+    {
+        $pengajuan_kamar->delete();
+        return redirect()->route('pengajuan-kamar.index')->with('success', 'Data berhasil di hapus');
+    }
 }

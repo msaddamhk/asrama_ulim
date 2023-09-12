@@ -162,5 +162,7 @@ Route::middleware('auth')->group(function () {
         Route::post('pengajuan-kamar/{pengajuan_kamar}/update/di-tolak', [KelolaPengajuanKamarController::class, 'update_tolak'])->name('pengajuan-kamar.update_tolak');
 
         Route::post('pengajuan-kamar/{pengajuan_kamar}/update/selesai', [KelolaPengajuanKamarController::class, 'update_selesai'])->name('pengajuan-kamar.update_selesai');
+
+        Route::delete('pengajuan-kamar/{pengajuan_kamar}/delete', [KelolaPengajuanKamarController::class, 'delete'])->name('pengajuan-kamar.delete');
     });
 });

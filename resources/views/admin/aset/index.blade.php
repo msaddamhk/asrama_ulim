@@ -11,18 +11,18 @@
     @endif
 
     <hr>
-    <div class="card p-5">
+    <div class="card p-5 mb-5">
         <div class="row">
             <div class="col-md-10">
                 <form action="{{ route('kamar.aset.index', $kamar) }}" method="GET">
                     <input type="text" name="cari" value="{{ request('cari') }}"
-                        placeholder="Masukkan Nama aset"class="form-control" />
+                        placeholder="Masukkan No aset"class="form-control" />
                 </form>
             </div>
             <div class="col-md-2 my-auto">
                 <a href="{{ route('kamar.aset.create', $kamar) }}" class="btn btn-success btn-sm"
-                    style="font-size: 15px">Tambah
-                    Aset</a>
+                    style="font-size: 15px">Tambah Aset
+                </a>
             </div>
         </div>
 
@@ -38,7 +38,6 @@
                         <th>No Aset</th>
                         <th>Merek</th>
                         <th>Kondisi</th>
-                        <th>Jumlah</th>
                         <th>Tanggal Pembelian</th>
                         <th>Gambar</th>
                         <th>Actions</th>
@@ -53,7 +52,6 @@
                             <td>{{ $item->no_aset }}</td>
                             <td>{{ $item->merek }}</td>
                             <td>{{ $item->kondisi }}</td>
-                            <td>{{ $item->jumlah }}</td>
                             <td>{{ $item->tanggal_pembelian }}</td>
                             <td>
                                 <a href="{{ asset('storage/aset/' . $item->foto) }}">

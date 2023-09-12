@@ -1,7 +1,13 @@
 @extends('layout.admin.main')
 
 @section('content')
-    <h5>kelola berita</h5>
+    <div class="d-flex justify-content-between">
+        <h5>kelola berita</h5>
+        <a href="{{ route('kategori-berita.index') }}" class="btn btn-primary btn-sm my-auto">
+            <i class="fa-solid fa-tags me-1"></i>
+            Kelola Kategori Berita
+        </a>
+    </div>
 
 
     @if (session('success'))

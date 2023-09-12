@@ -21,7 +21,7 @@
                 </option>
                 <option value="AKTIF" {{ request('status') === 'AKTIF' ? 'selected' : '' }}>Aktif
                 </option>
-                <option value="SELESAI" {{ request('status') === 'SELESAI' ? 'selected' : '' }}>Selesai
+                <option value="SELESAI" {{ request('status') === 'SELESAI' ? 'selected' : '' }}>Sudah Keluar
                 </option>
                 <option value="DI TOLAK" {{ request('status') === 'DI TOLAK' ? 'selected' : '' }}>Di tolak
                 </option>
@@ -51,7 +51,13 @@
                             <td>{{ $item->kamar->no_kamar }}</td>
                             <td>{{ $item->tanggal_masuk }}</td>
                             <td>{{ $item->tanggal_keluar }}</td>
-                            <td>{{ $item->status }}</td>
+                            <td>
+                                @if ($item->status == 'SELESAI')
+                                    SUDAH KELUAR
+                                @else
+                                    {{ $item->status }}
+                                @endif
+                            </td>
                             <td>
                                 <a href="{{ route('pengajuan-kamar.detail', $item->id) }}"
                                     class="btn btn-secondary btn-sm">Detail</a>
@@ -74,13 +80,21 @@
                                         style="display: inline;">
                                         @csrf
                                         <button class="btn btn-success btn-sm"
-                                            onclick="return confirm('Apakah Anda yakin ingin mengupdate status menjadi selesai?')">Update
-                                            Selesai</button>
+                                            onclick="return confirm('Apakah Anda yakin ingin mengupdate status menjadi Sudah keluar?')">Update
+                                            Keluar</button>
                                     </form>
                                 @elseif ($item->status == 'DI TOLAK')
-                                    <button class="btn btn-warning btn-sm" disabled>Ditolak</button>
-                                @elseif ($item->status == 'SELESAI')
-                                    <button class="btn btn-success btn-sm" disabled>Update Selesai</button>
+                                    <form action="{{ route('pengajuan-kamar.delete', $item->id) }}" method="POST"
+                                        style="display: inline;">
+                                        @csrf
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Apakah Anda yakin ingin menghapus data?')">Hapus
+                                            Data</button>
+                                    </form>
+                                    {{-- @elseif ($item->status == 'SELESAI')
+                                    <button class="btn btn-success btn-sm" disabled>Update Keluar</button> --}}
                                 @endif
                             </td>
                         </tr>

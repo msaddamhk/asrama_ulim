@@ -20,8 +20,38 @@
         @method('PUT')
 
         <div class="form-group mb-3">
-            <label for="nama" class="mb-2">Nama</label>
-            <input type="text" class="form-control" id="nama" name="nama" value="{{ $aset->nama }}" required>
+            <label for="kategori_aset">Kategori</label>
+            <select class="form-select @error('kategori_aset') is-invalid @enderror" id="kategori_aset" name="kategori_aset">
+                <option selected disabled>Choose Kategori</option>
+                @foreach ($kategori_aset as $kategori)
+                    <option value="{{ $kategori->id }}" {{ $aset->kategori_aset_id == $kategori->id ? 'selected' : '' }}>
+                        {{ $kategori->nama }}</option>
+                @endforeach
+            </select>
+            @error('kategori_aset')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="nama" class="mb-2">Nama Aset</label>
+            <select class="form-select @error('nama') is-invalid @enderror" id="nama" name="nama"
+                v-model="nama"required>
+                <option value="" v-if="!nama">Pilih Nama Aset</option>
+                <option value="Meja" {{ $aset->nama == 'Meja' ? 'selected' : '' }}>Meja</option>
+                <option value="Kursi" {{ $aset->nama == 'Kursi' ? 'selected' : '' }}>Kursi</option>
+                <option value="Lemari" {{ $aset->nama == 'Lemari' ? 'selected' : '' }}>Lemari</option>
+                <option value="Tempat Tidur" {{ $aset->nama == 'Tempat Tidur' ? 'selected' : '' }}>Tempat Tidur</option>
+                <option value="AC" {{ $aset->nama == 'AC' ? 'selected' : '' }}>AC</option>
+                <option value="Kipas Angin" {{ $aset->nama == 'Kipas Angin' ? 'selected' : '' }}>Kipas Angin</option>
+                <option value="Mesin Air" {{ $aset->nama == 'Mesin Air' ? 'selected' : '' }}>Mesin Air</option>
+                <option value="Komputer" {{ $aset->nama == 'Komputer' ? 'selected' : '' }}>Komputer</option>
+                <option value="Laptop" {{ $aset->nama == 'Laptop' ? 'selected' : '' }}>Laptop</option>
+                <option value="Sapu" {{ $aset->nama == 'Sapu' ? 'selected' : '' }}>Sapu</option>
+                <option value="Kain Pel Lantai" {{ $aset->nama == 'Kain Pel Lantai' ? 'selected' : '' }}>Kain Pel
+                    Lantai
+                </option>
+            </select>
         </div>
 
         <div class="form-group mb-3">
@@ -34,32 +64,13 @@
             <input type="text" class="form-control" id="kondisi" name="kondisi" value="{{ $aset->kondisi }}" required>
         </div>
 
-        <div class="form-group mb-3">
-            <label for="jumlah" class="mb-2">jumlah</label>
-            <input type="number" class="form-control" id="jumlah" name="jumlah" value="{{ $aset->jumlah }}" required>
-        </div>
+        <input type="hidden" class="form-control" id="jumlah" name="jumlah" value="1">
 
         <div class="form-group mb-3">
             <label for="tanggal_pembelian" class="mb-2">Tanggal Pembelian</label>
             <input type="date" class="form-control" id="tanggal_pembelian" name="tanggal_pembelian"
                 value="{{ $aset->tanggal_pembelian }}" required>
         </div>
-
-        <div class="form-group mb-3">
-            <label for="kategori_aset">Kategori</label>
-            <select class="form-select @error('kategori_aset') is-invalid @enderror" id="kategori_aset"
-                name="kategori_aset">
-                <option selected disabled>Choose Kategori</option>
-                @foreach ($kategori_aset as $kategori)
-                    <option value="{{ $kategori->id }}" {{ $aset->kategori_aset_id == $kategori->id ? 'selected' : '' }}>
-                        {{ $kategori->nama }}</option>
-                @endforeach
-            </select>
-            @error('kategori_aset')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-
 
         <div class="form-group mb-3">
             <label for="foto">Foto</label>
@@ -69,6 +80,6 @@
             @enderror
         </div>
 
-        <button type="submit" class="btn btn-primary">Simpan</button>
+        <button type="submit" class="btn btn-primary mb-5">Simpan</button>
     </form>
 @endsection

@@ -45,11 +45,11 @@
                     <span>Dashboard</span>
                 </a>
 
-                <a href="{{ route('kategori-aset.index') }}"
+                {{-- <a href="{{ route('kategori-aset.index') }}"
                     class="sidebar-item {{ Request::is('kategori-aset*') ? 'active' : '' }}">
                     <i class="fa-solid fa-tags me-2"></i>
                     <span>Kategori Aset</span>
-                </a>
+                </a> --}}
 
                 <a href="{{ route('kelola-aset.index') }}"
                     class="sidebar-item {{ Request::is('kelola-aset*') ? 'active' : '' }}">
@@ -69,11 +69,11 @@
                     <span>Galeri</span>
                 </a>
 
-                <a href="{{ route('kategori-berita.index') }}"
+                {{-- <a href="{{ route('kategori-berita.index') }}"
                     class="sidebar-item {{ Request::is('kategori-berita*') ? 'active' : '' }}">
                     <i class="fa-solid fa-tags me-2"></i>
                     <span>Kategori Berita</span>
-                </a>
+                </a> --}}
 
                 <a href="{{ route('kelola-berita.index') }}"
                     class="sidebar-item {{ Request::is('kelola-berita*') ? 'active' : '' }}">

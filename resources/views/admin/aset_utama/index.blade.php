@@ -1,7 +1,13 @@
 @extends('layout.admin.main')
 
 @section('content')
-    <h5>Kelola Aset</h5>
+    <div class="d-flex justify-content-between">
+        <h5>Kelola Aset</h5>
+        <a href="{{ route('kategori-aset.index') }}" class="btn btn-primary btn-sm my-auto">
+            <i class="fa-solid fa-tags me-1"></i>
+            Kelola Kategori Aset
+        </a>
+    </div>
 
     @if (session('success'))
         <div class="alert alert-success">
@@ -10,7 +16,7 @@
     @endif
 
     <hr>
-    <div class="card p-5">
+    <div class="card p-5 mb-5">
         <div class="row">
             <div class="col-md-10">
                 <form action="{{ route('kelola-aset.index') }}" method="GET">
@@ -36,7 +42,6 @@
                         <th>No Aset</th>
                         <th>Merek</th>
                         <th>Kondisi</th>
-                        <th>Jumlah</th>
                         <th>Tanggal Pembelian</th>
                         <th>Gambar</th>
                         <th>Actions</th>
@@ -51,7 +56,6 @@
                             <td>{{ $item->no_aset }}</td>
                             <td>{{ $item->merek }}</td>
                             <td>{{ $item->kondisi }}</td>
-                            <td>{{ $item->jumlah }}</td>
                             <td>{{ $item->tanggal_pembelian }}</td>
                             <td>
                                 <a href="{{ asset('storage/aset/' . $item->foto) }}">
@@ -68,7 +72,7 @@
                                     <button type="submit" class="btn btn-danger btn-sm"
                                         onclick="return confirm('Apakah Anda yakin ingin menghapus data?')">Delete</button>
                                 </form>
-                                <a class="btn btn-warning btn-sm" href="{{ route('no_aset.index', $item) }}">Download
+                                <a class="btn btn-warning btn-sm mt-2" href="{{ route('no_aset.index', $item) }}">Download
                                     No Aset</a>
                             </td>
                         </tr>
