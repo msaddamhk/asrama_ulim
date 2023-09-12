@@ -14,7 +14,9 @@
                                 <img src="{{ asset('storage/galeri/' . $item->foto) }}" alt="" height="250px"
                                     style="object-fit: cover">
                                 <div class="content">
-                                    <p class="text-white">{{ $item->created_at }}</p>
+                                    <p class="text-white m-0">{{ $item->deskripsi }}</p>
+                                    <p class="text-white m-0">{{ $item->created_at->format('d F Y') }}
+                                    </p>
                                 </div>
                             </div>
                         </a>

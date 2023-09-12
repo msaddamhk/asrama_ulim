@@ -32,12 +32,14 @@ class GaleriController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'deskripsi' => 'required|max:255',
             'foto' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
         $request->foto?->store('public/galeri');
 
         Galeri::create([
+            'deskripsi' => $request->deskripsi,
             'foto' => $request->foto ? $request->foto->hashName() : null,
         ]);
 
@@ -69,6 +71,7 @@ class GaleriController extends Controller
         $galeri = $kelola_galeri;
 
         $request->validate([
+            'deskripsi' => 'required|max:255',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
@@ -78,6 +81,7 @@ class GaleriController extends Controller
             $galeri->foto = $request->foto->hashName();
         }
 
+        $galeri->deskripsi = $request->deskripsi;
         $galeri->save();
         return redirect()->route('kelola-galeri.index')->with('success', 'galeri berhasil di Update.');
     }

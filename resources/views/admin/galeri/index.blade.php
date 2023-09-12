@@ -24,6 +24,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Deskripsi</th>
                         <th>Gambar</th>
                         <th>Actions</th>
                     </tr>
@@ -32,6 +33,7 @@
                     @forelse ($galeri as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
+                            <td>{{ $item->deskripsi }}</td>
                             <td>
                                 <a href="{{ asset('storage/galeri/' . $item->foto) }}">
                                     <img src="{{ asset('storage/galeri/' . $item->foto) }}" class="" width="120px"
