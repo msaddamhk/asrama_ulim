@@ -28,6 +28,22 @@ class KelolaPengajuanKamarController extends Controller
         return view('admin.pengajuan_kamar.detail', compact('pengajuan_kamar'));
     }
 
+    public function update_booking(PesananKamar $pengajuan_kamar)
+    {
+        $pengajuan_kamar->status = "BOOKING";
+        $pengajuan_kamar->save();
+
+        $namaPengguna = $pengajuan_kamar->user->name;
+        $emailPengguna = $pengajuan_kamar->user->email;
+
+        Mail::raw("Halo $namaPengguna,\n\n.Selamat pengajuan kamar Anda DITERIMA. Silahkan Lapor kepada Admin jika sudah masuk", function ($message) use ($emailPengguna) {
+            $message->to($emailPengguna)
+                ->subject('pengajuan kamar anda di terima');
+        });
+
+        return redirect()->route('pengajuan-kamar.index')->with('success', 'Data berhasil di update.');
+    }
+
     public function update_aktif(PesananKamar $pengajuan_kamar)
     {
         $kamar = Kamar::where('id',  $pengajuan_kamar->id_kamar)->first();
@@ -36,14 +52,6 @@ class KelolaPengajuanKamarController extends Controller
 
         $pengajuan_kamar->status = "AKTIF";
         $pengajuan_kamar->save();
-
-        $namaPengguna = $pengajuan_kamar->user->name;
-        $emailPengguna = $pengajuan_kamar->user->email;
-
-        Mail::raw("Halo $namaPengguna,\n\n.Selamat pengajuan kamar Anda DITERIMA.", function ($message) use ($emailPengguna) {
-            $message->to($emailPengguna)
-                ->subject('pengajuan kamar anda di terima');
-        });
 
         return redirect()->route('pengajuan-kamar.index')->with('success', 'Data berhasil di update.');
     }
@@ -71,6 +79,7 @@ class KelolaPengajuanKamarController extends Controller
         $kamar->save();
 
         $pengajuan_kamar->status = "SELESAI";
+        $pengajuan_kamar->tanggal_keluar = now();
         $pengajuan_kamar->save();
 
         return redirect()->route('pengajuan-kamar.index')->with('success', 'Data berhasil di update.');

@@ -18,9 +18,6 @@ class PesanKamarController extends Controller
     public function store(Request $request)
     {
 
-        // $tanggal_masuk = $request->tanggal_masuk;
-        // $tanggal_keluar = $request->tanggal_keluar;
-
         // $pesanan_tumpang_tindih = PesananKamar::where('id_kamar', $request->kamar)
         //     ->where('status', 'AKTIF')
         //     ->where(function ($query) use ($tanggal_masuk, $tanggal_keluar) {
@@ -35,11 +32,31 @@ class PesanKamarController extends Controller
         //     })
         //     ->first();
 
-        // if ($pesanan_tumpang_tindih) {
-        //     $tanggal_mulai = $pesanan_tumpang_tindih->tanggal_masuk;
-        //     $tanggal_selesai = $pesanan_tumpang_tindih->tanggal_keluar;
-        //     return "Kamar sudah dipesan pada rentang tanggal $tanggal_mulai hingga $tanggal_selesai oleh pengguna lain.";
-        // }
+        $tanggal_masuk = $request->tanggal_masuk;
+        $tanggal_keluar = $request->tanggal_keluar;
+
+        $pesanan_tumpang_tindih = PesananKamar::where('id_kamar', $request->kamar)
+            ->where(function ($query) use ($tanggal_masuk, $tanggal_keluar) {
+                $query->where('status', 'AKTIF')
+                    ->orWhere('status', 'BOOKING');
+            })
+            ->where(function ($query) use ($tanggal_masuk, $tanggal_keluar) {
+                $query->where(function ($query) use ($tanggal_masuk, $tanggal_keluar) {
+                    $query->whereDate('tanggal_masuk', '<=', $tanggal_masuk)
+                        ->whereDate('tanggal_keluar', '>=', $tanggal_masuk);
+                })
+                    ->orWhere(function ($query) use ($tanggal_masuk, $tanggal_keluar) {
+                        $query->whereDate('tanggal_masuk', '>', $tanggal_masuk)
+                            ->whereDate('tanggal_masuk', '<=', $tanggal_keluar);
+                    });
+            })
+            ->first();
+
+        if ($pesanan_tumpang_tindih) {
+            $tanggal_mulai = $pesanan_tumpang_tindih->tanggal_masuk;
+            $tanggal_selesai = $pesanan_tumpang_tindih->tanggal_keluar;
+            return back()->with('pesan', "Kamar sudah di isi pada rentang tanggal $tanggal_mulai hingga $tanggal_selesai oleh Orang lain.");
+        }
 
         $pengajuan_kamar = new PesananKamar();
         $pengajuan_kamar->id_user = auth()->user()->id;

@@ -157,6 +157,8 @@ Route::middleware('auth')->group(function () {
 
         Route::get('pengajuan-kamar/detail/{pengajuan_kamar}', [KelolaPengajuanKamarController::class, 'detail'])->name('pengajuan-kamar.detail');
 
+        Route::post('pengajuan-kamar/{pengajuan_kamar}/update/booking', [KelolaPengajuanKamarController::class, 'update_booking'])->name('pengajuan-kamar.update_booking');
+
         Route::post('pengajuan-kamar/{pengajuan_kamar}/update/di-terima', [KelolaPengajuanKamarController::class, 'update_aktif'])->name('pengajuan-kamar.update_aktif');
 
         Route::post('pengajuan-kamar/{pengajuan_kamar}/update/di-tolak', [KelolaPengajuanKamarController::class, 'update_tolak'])->name('pengajuan-kamar.update_tolak');

@@ -39,6 +39,7 @@
                         <th>Nama Kamar</th>
                         <th>Tanggal Masuk</th>
                         <th>Tanggal Keluar</th>
+                        <th>Tanggal Pengajuan</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -51,6 +52,7 @@
                             <td>{{ $item->kamar->no_kamar }}</td>
                             <td>{{ $item->tanggal_masuk }}</td>
                             <td>{{ $item->tanggal_keluar }}</td>
+                            <td>{{ $item->created_at }}</td>
                             <td>
                                 @if ($item->status == 'SELESAI')
                                     SUDAH KELUAR
@@ -62,11 +64,11 @@
                                 <a href="{{ route('pengajuan-kamar.detail', $item->id) }}"
                                     class="btn btn-secondary btn-sm">Detail</a>
                                 @if ($item->status == 'BELUM DI VERIFIKASI')
-                                    <form action="{{ route('pengajuan-kamar.update_aktif', $item->id) }}" method="POST"
+                                    <form action="{{ route('pengajuan-kamar.update_booking', $item->id) }}" method="POST"
                                         style="display: inline;">
                                         @csrf
                                         <button type="submit" class="btn btn-primary btn-sm"
-                                            onclick="return confirm('Apakah Anda yakin ingin mengupdate status menjadi aktif?')">Verifikasi</button>
+                                            onclick="return confirm('Apakah Anda yakin ingin menerima pengajuan kamar ini?')">Verifikasi</button>
                                     </form>
 
                                     <form action="{{ route('pengajuan-kamar.update_tolak', $item->id) }}" method="POST"
@@ -93,8 +95,13 @@
                                             onclick="return confirm('Apakah Anda yakin ingin menghapus data?')">Hapus
                                             Data</button>
                                     </form>
-                                    {{-- @elseif ($item->status == 'SELESAI')
-                                    <button class="btn btn-success btn-sm" disabled>Update Keluar</button> --}}
+                                @elseif ($item->status == 'BOOKING')
+                                    <form action="{{ route('pengajuan-kamar.update_aktif', $item->id) }}" method="POST"
+                                        style="display: inline;">
+                                        @csrf
+                                        <button type="submit" class="btn btn-primary btn-sm"
+                                            onclick="return confirm('Apakah Anda yakin ingin mengupdate status menjadi aktif?')">Aktifkan</button>
+                                    </form>
                                 @endif
                             </td>
                         </tr>
@@ -112,7 +119,6 @@
         document.addEventListener("DOMContentLoaded", function() {
             const form = document.getElementById("verifikasi-form");
             const statusSelect = document.getElementById("status-select");
-
             statusSelect.addEventListener("change", function() {
                 form.submit();
             });

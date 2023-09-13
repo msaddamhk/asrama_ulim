@@ -9,6 +9,11 @@
                 </div>
             @endif
 
+            @if (session('pesan'))
+                <div class="alert alert-danger mb-3">
+                    {{ session('pesan') }}
+                </div>
+            @endif
 
             <div class="row">
                 <div class="col-md-7">
@@ -55,12 +60,13 @@
                             <div class="mb-3">
                                 <label for="tanggal_reservasi" class="form-label">Tanggal Masuk</label>
                                 <input type="date" class="form-control" id="tanggal_reservasi" name="tanggal_masuk"
-                                    required>
+                                    required min="{{ date('Y-m-d') }}">
+
                             </div>
                             <div class="mb-3">
                                 <label for="tanggal_keluar" class="form-label">Tanggal Keluar</label>
                                 <input type="date" class="form-control" id="tanggal_keluar" name="tanggal_keluar"
-                                    required>
+                                    required min="{{ date('Y-m-d') }}">
                             </div>
 
                             @if (auth()->check())

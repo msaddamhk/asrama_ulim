@@ -25,9 +25,11 @@
                         @csrf
                         <div class="form-group mb-3">
                             <label for="jabatan">Jabatan</label>
-                            <select name="jabatan" class="form-control" required>
-                                <option disabled selected>Pilih Jabatan</option>
+                            <select name="jabatan" class="form-control @error('jabatan') is-invalid @enderror"
+                                v-model="jabatan" id="jabatan" required>
+                                <option value="" v-if="!jabatan" selected disabled>Pilih Jabatan</option>
                                 <option value="Ketua">Ketua</option>
+                                <option value="Wakil Ketua">Wakil Ketua</option>
                                 <option value="Sekretaris">Sekretaris</option>
                                 <option value="Bendahara">Bendahara</option>
                             </select>
