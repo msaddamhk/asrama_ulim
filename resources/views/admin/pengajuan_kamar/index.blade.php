@@ -25,6 +25,8 @@
                 </option>
                 <option value="DI TOLAK" {{ request('status') === 'DI TOLAK' ? 'selected' : '' }}>Di tolak
                 </option>
+                <option value="BOOKING" {{ request('status') === 'BOOKING' ? 'selected' : '' }}>Booking
+                </option>
             </select>
         </form>
 
