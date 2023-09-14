@@ -75,7 +75,12 @@
 
         <div class="form-group mb-3">
             <label for="kondisi" class="mb-2">Kondisi</label>
-            <input type="text" class="form-control" id="kondisi" name="kondisi" value="{{ $aset->kondisi }}" required>
+            <select class="form-select @error('kondisi') is-invalid @enderror" id="kondisi" name="kondisi"
+                v-model="kondisi" required>
+                <option value="" v-if="!kondisi">Pilih Kondisi</option>
+                <option value="Baik" {{ $aset->kondisi == 'Baik' ? 'selected' : '' }}>Baik</option>
+                <option value="Rusak" {{ $aset->kondisi == 'Rusak' ? 'selected' : '' }}>Rusak</option>
+            </select>
         </div>
 
         <input type="hidden" class="form-control" id="jumlah" name="jumlah" value="1">
