@@ -104,8 +104,6 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('kategori-aset.nama-aset', NamaAsetController::class);
 
-        // Route::get('getCity/ajax/{id}', [RajaongkirController::class, 'ajax']);
-
         Route::get('getNamaAset/ajax/{id}', function ($id) {
             $nama_aset = NamaAset::where('kategori_aset_id', '=', $id)->pluck('nama');
             return json_encode($nama_aset);
