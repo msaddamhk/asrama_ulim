@@ -18,10 +18,12 @@
     <form action="{{ route('kamar.aset.store', $kamar) }}" method="POST" enctype="multipart/form-data">
         @csrf
 
+
         <div class="form-group mb-3">
             <label for="kategori_aset">Kategori</label>
-            <select class="form-select @error('kategori_aset') is-invalid @enderror" id="kategori_aset" name="kategori_aset">
-                <option selected disabled>Choose Kategori</option>
+            <select class="form-select @error('kategori_aset') is-invalid @enderror" id="kategori_aset" name="kategori_aset"
+                v-model="kategori_aset" required>
+                <option v-if="!kategori_aset" selected disabled>Choose Kategori</option>
                 @foreach ($kategori_aset as $kategori)
                     <option value="{{ $kategori->id }}" {{ old('kategori_aset') == $kategori->id ? 'selected' : '' }}>
                         {{ $kategori->nama }}</option>
@@ -33,6 +35,13 @@
         </div>
 
         <div class="form-group mb-3">
+            <label for="nama" class="mb-2">Nama Aset</label>
+            <select class="form-select" id="nama" name="nama" required>
+                <option value="" disabled selected>Pilih Nama Aset</option>
+            </select>
+        </div>
+
+        {{-- <div class="form-group mb-3">
             <label for="nama" class="mb-2">Nama Aset</label>
             <select class="form-select @error('nama') is-invalid @enderror" id="nama" name="nama" v-model="nama"
                 required>
@@ -50,7 +59,7 @@
                 <option value="Kain Pel Lantai" {{ old('nama') == 'Kain Pel Lantai' ? 'selected' : '' }}>Kain Pel Lantai
                 </option>
             </select>
-        </div>
+        </div> --}}
 
         <div class="form-group mb-3">
             <label for="merek" class="mb-2">Merek</label>
@@ -85,4 +94,33 @@
 
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
+
 @endsection
+
+@push('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#kategori_aset').on('change', function() {
+                var kategoriId = $(this).val();
+                if (kategoriId) {
+                    $.ajax({
+                        url: '/getNamaAset/ajax/' + kategoriId,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            $('select[name="nama"]').empty();
+                            $.each(data, function(key, value) {
+                                $('select[name="nama"]').append(
+                                    '<option>' + value + '</option>');
+                                console.log(key, value);
+                            });
+
+                        }
+                    });
+                } else {
+                    $('select[name="nama"]').empty();
+                }
+            });
+        });
+    </script>
+@endpush

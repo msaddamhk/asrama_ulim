@@ -21,8 +21,9 @@
 
         <div class="form-group mb-3">
             <label for="kategori_aset">Kategori</label>
-            <select class="form-select @error('kategori_aset') is-invalid @enderror" id="kategori_aset" name="kategori_aset">
-                <option selected disabled>Choose Kategori</option>
+            <select class="form-select @error('kategori_aset') is-invalid @enderror" id="kategori_aset" name="kategori_aset"
+                v-model="kategori_aset" required>
+                <option v-if="!kategori_aset" selected disabled>Choose Kategori</option>
                 @foreach ($kategori_aset as $kategori)
                     <option value="{{ $kategori->id }}" {{ $aset->kategori_aset_id == $kategori->id ? 'selected' : '' }}>
                         {{ $kategori->nama }}</option>
@@ -35,8 +36,9 @@
 
         <div class="form-group mb-3">
             <label for="kamar">Ruangan</label>
-            <select class="form-select @error('kamar') is-invalid @enderror" id="kamar" name="kamar">
-                <option selected disabled>Pilih Ruangan</option>
+            <select class="form-select @error('kamar') is-invalid @enderror" id="kamar" name="kamar" v-model="kamar"
+                required>
+                <option v-if="!kamar" selected disabled>Pilih Ruangan</option>
                 @foreach ($kamar as $item)
                     <option value="{{ $item->id }}" {{ $aset->id_kamar == $item->id ? 'selected' : '' }}>
                         {{ $item->no_kamar }}</option>
