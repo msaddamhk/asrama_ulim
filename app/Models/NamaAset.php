@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class KategoriAset extends Model
+class NamaAset extends Model
 {
     use HasFactory;
 
-    protected $table = 'kategori_aset';
+    protected $table = 'nama_aset';
     protected $guarded = ['id'];
 
-    public function namaAset()
+    public function kategoriAset()
     {
-        return $this->hasMany(NamaAset::class, 'kategori_aset_id');
+        return $this->belongsTo(KategoriAset::class, 'kategori_aset_id');
     }
 }

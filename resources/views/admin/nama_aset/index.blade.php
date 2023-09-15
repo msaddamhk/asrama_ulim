@@ -14,14 +14,14 @@
     <div class="card p-5">
         <div class="row">
             <div class="col-md-10">
-                <form action="{{ route('kategori-aset.index') }}" method="GET">
+                <form action="{{ route('kategori-aset.nama-aset.index', $kategori_aset) }}" method="GET">
                     <input type="text" name="cari" value="{{ request('cari') }}"
-                        placeholder="Masukkan nama kategori aset"class="form-control" />
+                        placeholder="Masukkan nama aset"class="form-control" />
                 </form>
             </div>
             <div class="col-md-2 my-auto">
-                <a href="{{ route('kategori-aset.create') }}" class="btn btn-success btn-sm" style="font-size: 15px">Tambah
-                    kategori</a>
+                <a href="{{ route('kategori-aset.nama-aset.create', $kategori_aset) }}" class="btn btn-success btn-sm"
+                    style="font-size: 15px">Tambah Nama Aset</a>
             </div>
         </div>
 
@@ -37,20 +37,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($kategori_aset as $item)
+                    @forelse ($nama_aset as $item)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $item->nama }}</td>
                             <td>
-                                <a href="{{ route('kategori-aset.edit', $item->id) }}"
+                                <a href="{{ route('kategori-aset.nama-aset.edit', [$kategori_aset, $item]) }}"
                                     class="btn btn-primary btn-sm">Edit</a>
 
-                                <a href="{{ route('kategori-aset.nama-aset.index', $item->id) }}"
-                                    class="btn btn-warning btn-sm">Kelola
-                                    Nama Aset</a>
-
-                                <form action="{{ route('kategori-aset.destroy', $item->id) }}" method="POST"
-                                    style="display:inline;">
+                                <form action="{{ route('kategori-aset.nama-aset.destroy', [$kategori_aset, $item]) }}"
+                                    method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm"
@@ -66,6 +62,6 @@
                 </tbody>
             </table>
         </div>
-        {{ $kategori_aset->links() }}
+        {{ $nama_aset->links() }}
     </div>
 @endsection

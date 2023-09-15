@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\KelolaAdminController;
 use App\Http\Controllers\admin\KelolaPengajuanKamarController;
 use App\Http\Controllers\admin\KelolaPengurusController;
 use App\Http\Controllers\admin\KelolaTanggapanController;
+use App\Http\Controllers\admin\NamaAsetController;
 use App\Http\Controllers\admin\TamuController;
 use App\Http\Controllers\admin\VerifikasiAnggotaController;
 use App\Http\Controllers\admin\WaController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\user\PengurusController;
 use App\Http\Controllers\user\PesanKamarController;
 use App\Http\Controllers\user\TanggapanController;
 use App\Models\Kamar;
+use App\Models\NamaAset;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -96,9 +98,18 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('kelola-admin', KelolaAdminController::class);
 
+        Route::resource('kategori-aset', KategoriAsetController::class);
+
         Route::resource('kategori-berita', KategoriBeritaController::class);
 
-        Route::resource('kategori-aset', KategoriAsetController::class);
+        Route::resource('kategori-aset.nama-aset', NamaAsetController::class);
+
+        // Route::get('getCity/ajax/{id}', [RajaongkirController::class, 'ajax']);
+
+        Route::get('getNamaAset/ajax/{id}', function ($id) {
+            $nama_aset = NamaAset::where('kategori_aset_id', '=', $id)->pluck('nama');
+            return json_encode($nama_aset);
+        });
 
         Route::get('ruangan/{kamar}/aset', [AsetController::class, 'index'])
             ->name('kamar.aset.index');

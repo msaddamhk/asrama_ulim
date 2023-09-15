@@ -47,7 +47,15 @@
             @enderror
         </div>
 
+
         <div class="form-group mb-3">
+            <label for="nama" class="mb-2">Nama Aset</label>
+            <select class="form-select" id="nama" name="nama" required>
+                <option value="" disabled selected>Pilih Nama Aset</option>
+            </select>
+        </div>
+
+        {{-- <div class="form-group mb-3">
             <label for="nama" class="mb-2">Nama Aset</label>
             <select class="form-select @error('nama') is-invalid @enderror" id="nama" name="nama" v-model="nama"
                 required>
@@ -65,7 +73,7 @@
                 <option value="Kain Pel Lantai" {{ old('nama') == 'Kain Pel Lantai' ? 'selected' : '' }}>Kain Pel Lantai
                 </option>
             </select>
-        </div>
+        </div> --}}
 
         <div class="form-group mb-3">
             <label for="merek" class="mb-2">Merek</label>
@@ -100,4 +108,34 @@
 
         <button type="submit" class="btn btn-primary mb-5">Simpan</button>
     </form>
+
 @endsection
+
+
+@push('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#kategori_aset').on('change', function() {
+                var kategoriId = $(this).val();
+                if (kategoriId) {
+                    $.ajax({
+                        url: '/getNamaAset/ajax/' + kategoriId,
+                        type: "GET",
+                        dataType: "json",
+                        success: function(data) {
+                            $('select[name="nama"]').empty();
+                            $.each(data, function(key, value) {
+                                $('select[name="nama"]').append(
+                                    '<option>' + value + '</option>');
+                                console.log(key, value);
+                            });
+
+                        }
+                    });
+                } else {
+                    $('select[name="nama"]').empty();
+                }
+            });
+        });
+    </script>
+@endpush

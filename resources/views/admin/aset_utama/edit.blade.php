@@ -49,6 +49,13 @@
 
         <div class="form-group mb-3">
             <label for="nama" class="mb-2">Nama Aset</label>
+            <select class="form-select" id="nama" name="nama" required>
+                <option value="" disabled selected>Pilih Nama Aset</option>
+            </select>
+        </div>
+
+        {{-- <div class="form-group mb-3">
+            <label for="nama" class="mb-2">Nama Aset</label>
             <select class="form-select @error('nama') is-invalid @enderror" id="nama" name="nama"
                 v-model="nama"required>
                 <option value="" v-if="!nama">Pilih Nama Aset</option>
@@ -66,7 +73,7 @@
                     Lantai
                 </option>
             </select>
-        </div>
+        </div> --}}
 
         <div class="form-group mb-3">
             <label for="merek" class="mb-2">Merek</label>
@@ -102,3 +109,41 @@
         <button type="submit" class="btn btn-primary mb-5">Simpan</button>
     </form>
 @endsection
+
+
+@push('scripts')
+    @push('scripts')
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var kategoriSelect = $('#kategori_aset');
+                var namaSelect = $('#nama');
+                var selectedKategoriId = {{ $aset->kategori_aset_id ?? 'null' }};
+
+                function populateNamaAset() {
+                    var kategoriId = kategoriSelect.val();
+                    if (kategoriId) {
+                        $.ajax({
+                            url: '/getNamaAset/ajax/' + kategoriId,
+                            type: "GET",
+                            dataType: "json",
+                            success: function(data) {
+                                namaSelect.empty();
+                                $.each(data, function(key, value) {
+                                    namaSelect.append('<option>' + value + '</option>');
+                                });
+
+                                if (selectedKategoriId == kategoriId) {
+                                    namaSelect.val('{{ $aset->nama ?? '' }}');
+                                }
+                            }
+                        });
+                    } else {
+                        namaSelect.empty();
+                    }
+                }
+                populateNamaAset();
+                kategoriSelect.on('change', populateNamaAset);
+            });
+        </script>
+    @endpush
+@endpush
